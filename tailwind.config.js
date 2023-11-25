@@ -3,8 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
-    "./src/**/*.{html,ts}",
-    "./node_modules/flowbite/**/*.js"
+    "./src/**/*.{html,ts}"
   ],
   theme: {
     extend: {
@@ -13,8 +12,6 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('flowbite/plugin')
-  ],
+  plugins: [],
 }
 
