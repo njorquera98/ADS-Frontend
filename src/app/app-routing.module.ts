@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { AyudantiasDirectorComponent } from './components/ayudantias-director/ayudantias-director.component';
+
+const routes: Routes = [
+  { path: 'director/ayudantias', component: AyudantiasDirectorComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
