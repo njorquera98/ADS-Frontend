@@ -13,18 +13,14 @@ import { AuthService } from '../../../../shared/services/mockups/auth.service';
   styleUrl: './tabla-ayudantias.component.css'
 })
 export class TablaAyudantiasComponent implements OnInit {
-  ayudantias: Ayudantia[] = [];
-  asignaturas: Asignatura[] = [];
 
   constructor(public ayudantiasService: AyudantiasService, private asignaturasService: AsignaturasService, public authService: AuthService){};
 
   ngOnInit(): void {
-    this.ayudantias = this.ayudantiasService.ayudantias;
-    this.asignaturas = this.asignaturasService.asignaturas;
   }
 
   getAsignatura(ayudantia: Ayudantia): Asignatura | undefined {
-    return this.asignaturas.find(a => a.id_asignatura === ayudantia.id_asignatura)
+    return this.asignaturasService.asignaturas.find(a => a.id_asignatura === ayudantia.id_asignatura)
   }
 
   createAyudantia() {
