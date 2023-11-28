@@ -22,7 +22,7 @@ export class SolicitudesService {
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(SOLICITUDES_KEY, JSON.stringify(this.solicitudes));
   }
 

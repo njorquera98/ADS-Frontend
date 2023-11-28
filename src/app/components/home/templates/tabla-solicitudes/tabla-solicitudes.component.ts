@@ -36,4 +36,10 @@ export class TablaSolicitudesComponent {
   createAyudantia() {
     
   }
+
+  eliminarSolicitud(solicitud: Solicitud) {
+    const index = this.solicitudesService.solicitudes.findIndex(val => val.id_solicitud === solicitud.id_solicitud)!;
+    this.solicitudesService.solicitudes.splice(index, 1);
+    this.solicitudesService.guardarEnLocalStorage();
+  }
 }

@@ -24,6 +24,11 @@ export class TablaAyudantiasComponent implements OnInit {
   }
 
   createAyudantia() {
-    
+  }
+
+  eliminarAyudantia(ayudantia: Ayudantia) {
+    const index = this.ayudantiasService.ayudantias.findIndex(val => val.id_ayudantia === ayudantia.id_ayudantia)!;
+    this.ayudantiasService.ayudantias.splice(index, 1);
+    this.ayudantiasService.guardarEnLocalStorage();
   }
 }

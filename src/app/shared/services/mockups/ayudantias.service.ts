@@ -21,7 +21,7 @@ export class AyudantiasService {
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(AYUDANTIAS_KEY, JSON.stringify(this.ayudantias));
   }
 

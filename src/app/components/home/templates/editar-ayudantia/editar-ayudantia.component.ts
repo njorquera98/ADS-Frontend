@@ -40,12 +40,17 @@ export class EditarAyudantiaComponent implements OnInit{
 
     const id_edit = this.ayudantiasService.ayudantias.findIndex(val => val.id_ayudantia === this.ayudantiaEdit?.id_ayudantia);
     this.ayudantiasService.ayudantias[id_edit] = this.ayudantiaEdit!;
+    this.ayudantiasService.guardarEnLocalStorage();
     console.log(this.ayudantiasService.ayudantias);
     this.router.navigate(['ayudantias']);
   }
 
   getAsignatura(ayudantia: Ayudantia): Asignatura | undefined {
     return this.asignaturasService.asignaturas.find(a => a.id_asignatura === ayudantia.id_asignatura)
+  }
+
+  cancelar() {
+    this.router.navigate(['ayudantias']);
   }
 
 }

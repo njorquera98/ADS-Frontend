@@ -9,6 +9,8 @@ import { CrearAyudantiaComponent } from './components/home/templates/crear-ayuda
 import { EditarAyudantiaComponent } from './components/home/templates/editar-ayudantia/editar-ayudantia.component';
 import { FormsModule } from '@angular/forms';
 import { TablaSolicitudesComponent } from './components/home/templates/tabla-solicitudes/tabla-solicitudes.component';
+import { CrearSolicitudComponent } from './components/home/templates/crear-solicitud/crear-solicitud.component';
+import { EditarSolicitudComponent } from './components/home/templates/editar-solicitud/editar-solicitud.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { TablaSolicitudesComponent } from './components/home/templates/tabla-sol
     TablaAyudantiasComponent,
     CrearAyudantiaComponent,
     EditarAyudantiaComponent,
-    TablaSolicitudesComponent
+    TablaSolicitudesComponent,
+    CrearSolicitudComponent,
+    EditarSolicitudComponent
   ],
   imports: [
     BrowserModule,

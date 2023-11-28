@@ -37,8 +37,13 @@ export class CrearAyudantiaComponent implements OnInit {
     }
 
     this.ayudantiasService.ayudantias.push(nuevaAyudantia);
+    this.ayudantiasService.guardarEnLocalStorage();
     console.log(this.authService.cuenta_actual);
     console.log(this.ayudantiasService.ayudantias);
+    this.router.navigate(['ayudantias']);
+  }
+
+  cancelar() {
     this.router.navigate(['ayudantias']);
   }
 }
