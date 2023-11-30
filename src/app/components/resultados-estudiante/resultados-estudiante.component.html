@@ -39,7 +39,7 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let item of resultados; let i = index" class="hover:bg-gray-50">
+                    <tr *ngFor="let item of resultados; let i = index" class="hover:bg-gray-100">
                         <td
                             class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
                             {{i + 1}}
@@ -61,10 +61,10 @@
                         </td>
                         <td class="flex justify-center border-t-0 px-6 border-l-0 border-r-0 whitespace-nowrap p-4">
                             <div *ngIf="item.estado == 'aprobado'" class="flex justify-center items-center w-40 rounded-lg">
-                                <p class="inline px-5 py-1 rounded-lg bg-green-200 text-green-800 mr-4">Aprobado</p>
+                                <p class="inline px-5 py-1 rounded-lg bg-green-200 text-green-800 mr-4">Seleccionado</p>
                             </div>
                             <div *ngIf="item.estado == 'rechazado'" class="flex justify-center items-center w-40 rounded-lg">
-                                <p class="inline px-4 py-1 rounded-lg bg-red-200 text-red-700 mr-4">Rechazado</p>
+                                <p class="inline px-4 py-1 rounded-lg bg-red-200 text-red-700 mr-4">No seleccionado</p>
                             </div>
                             <div *ngIf="item.estado == 'en espera'" class="flex justify-center items-center w-40 rounded-lg space-x-8">
                                 <p class="inline px-4 py-1 rounded-lg bg-gray-200 text-gray-700 mr-4">En espera</p>
