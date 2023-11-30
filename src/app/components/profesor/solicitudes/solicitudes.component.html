@@ -17,11 +17,25 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let solicitud of solicitudes; index as i">
+      <tr *ngFor="let solicitud of solicitudesService.solicitudes; index as i">
         <td>{{ i + 1 }}</td>
+        <td>
+          {{
+            asignaturaService.obtenerAsignatura(solicitud.id_ayudantia)?.nombre
+          }}
+        </td>
         <td>{{ solicitud.id_ayudantia }}</td>
-        <td>{{ solicitud.id_ayudantia }}</td>
-        <td>{{ solicitud.id_usuario }}</td>
+        <td>
+          {{
+            usuarioService.obetenrUsuario(solicitud.id_usuario)?.nombre +
+              " " +
+              usuarioService.obetenrUsuario(solicitud.id_usuario)
+                ?.apellido_paterno +
+              " " +
+              usuarioService.obetenrUsuario(solicitud.id_usuario)
+                ?.apellido_materno
+          }}
+        </td>
         <td>{{ solicitud.promedio_asignatura }}</td>
         <td>{{ solicitud.prioridad }}</td>
         <td>{{ solicitud.anteriormente_ayudante ? "Si" : "No" }}</td>
@@ -82,11 +96,12 @@
             </svg></button
           >}
         </td>
-        <app-modal
+        <profesor-modal
           class="dark:text-black"
           *ngIf="showModal[i]"
           (closeModalEvent)="handleModal(i)"
-        ></app-modal>
+          [solicitud]="solicitud"
+        ></profesor-modal>
       </tr>
     </tbody>
   </table>

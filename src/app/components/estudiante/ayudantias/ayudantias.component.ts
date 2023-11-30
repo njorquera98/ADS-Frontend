@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { Ayudantia } from '../../../models/ayudantia.model';
 //import { CommonModule } from '@angular/common';
+import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
+import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
+import { Asignatura } from '../../../models/asignatura.model';
+import { AuthService } from '../../../shared/services/mockups/auth.service';
 
 @Component({
   selector: 'app-ayudantias',
@@ -10,33 +13,17 @@ import { Ayudantia } from '../../../models/ayudantia.model';
   styleUrl: './ayudantias.component.css',
 })
 export class AyudantiasComponent {
-  ayudantias: Ayudantia[] = [
-    {
-      id_ayudantia: 1,
-      id_asignatura: 3124,
-      id_usuario: 1,
-      cupos: 2,
-      horas: 4,
-      estado: 'no postulado',
-      id_periodo: 1,
-    },
-    {
-      id_ayudantia: 2,
-      id_asignatura: 512,
-      id_usuario: 2,
-      cupos: 1,
-      horas: 2,
-      estado: 'postulado',
-      id_periodo: 2,
-    },
-    {
-      id_ayudantia: 3,
-      id_asignatura: 5123,
-      id_usuario: 3,
-      cupos: 3,
-      horas: 6,
-      estado: 'no postulado',
-      id_periodo: 3,
-    },
-  ];
+  constructor(
+    public ayudantiasService: AyudantiasService,
+    public asignaturaService: AsignaturasService,
+    private authService: AuthService
+  ) {}
+
+  // obtenerEstadoSolicitud(idAyudantia: number): string {
+
+  // }
+  showModal: boolean[] = [];
+  handleModal(i: number) {
+    this.showModal[i] = !this.showModal[i];
+  }
 }

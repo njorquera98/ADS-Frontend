@@ -8,6 +8,9 @@ import { AyudantiasComponent } from './components/estudiante/ayudantias/ayudanti
 import { SolicitudesComponent } from './components/estudiante/solicitudes/solicitudes.component';
 import { ProfesorSolicitudesComponent } from './components/profesor/solicitudes/solicitudes.component';
 import { ProfesorModalComponent } from './components/profesor/modal/modal.component';
+import { EstudianteModalComponent } from './components/estudiante/modal/modal.component';
+import { FormsModule } from '@angular/forms';
+import { PostularComponent } from './components/estudiante/postular/postular.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +20,10 @@ import { ProfesorModalComponent } from './components/profesor/modal/modal.compon
     SolicitudesComponent,
     ProfesorSolicitudesComponent,
     ProfesorModalComponent,
+    EstudianteModalComponent,
+    PostularComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
