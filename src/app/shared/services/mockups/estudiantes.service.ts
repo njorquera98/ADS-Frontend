@@ -22,7 +22,7 @@ export class EstudiantesService {
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(ESTUDIANTES_KEY, JSON.stringify(this.estudiantes));
   }
 

@@ -23,7 +23,7 @@ export class AuthService {
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(AUTH_KEY, JSON.stringify(this.cuenta_actual));
   }
 

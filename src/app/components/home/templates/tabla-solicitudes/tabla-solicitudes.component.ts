@@ -17,12 +17,8 @@ import { EstudiantesService } from '../../../../shared/services/mockups/estudian
   styleUrl: './tabla-solicitudes.component.css'
 })
 export class TablaSolicitudesComponent {
-  
   constructor(public solicitudesService: SolicitudesService, private asignaturasService: AsignaturasService, 
     public ayudantiasService: AyudantiasService, public authService: AuthService, private estudiantesService: EstudiantesService){};
-
-  ngOnInit(): void {
-  }
 
   getAsignatura(solicitud: Solicitud): Asignatura | undefined {
     const ayudantia = this.ayudantiasService.ayudantias.find(val => val.id_ayudantia === solicitud.id_ayudantia);
@@ -33,13 +29,35 @@ export class TablaSolicitudesComponent {
     return this.estudiantesService.estudiantes.find(val => val.id_usuario === solicitud.id_usuario);
   }
 
-  createAyudantia() {
-    
-  }
-
   eliminarSolicitud(solicitud: Solicitud) {
     const index = this.solicitudesService.solicitudes.findIndex(val => val.id_solicitud === solicitud.id_solicitud)!;
     this.solicitudesService.solicitudes.splice(index, 1);
     this.solicitudesService.guardarEnLocalStorage();
   }
+
+  aprobarSolicitud(solicitud: Solicitud) {
+
+    solicitud.estado = "Aprobado";
+
+    const id_edit = this.solicitudesService.solicitudes.findIndex(val => val.id_solicitud === solicitud.id_solicitud);
+    this.solicitudesService.solicitudes[id_edit] = solicitud;
+    this.solicitudesService.guardarEnLocalStorage();
+  }
+
+  rechazarSolicitud(solicitud: Solicitud) {
+    solicitud.estado = "Rechazado";
+
+    const id_edit = this.solicitudesService.solicitudes.findIndex(val => val.id_solicitud === solicitud.id_solicitud);
+    this.solicitudesService.solicitudes[id_edit] = solicitud;
+    this.solicitudesService.guardarEnLocalStorage();
+  }
+
+  reset(solicitud: Solicitud) {
+    solicitud.estado = "Creado";
+
+    const id_edit = this.solicitudesService.solicitudes.findIndex(val => val.id_solicitud === solicitud.id_solicitud);
+    this.solicitudesService.solicitudes[id_edit] = solicitud;
+    this.solicitudesService.guardarEnLocalStorage();
+  }
+
 }

@@ -27,7 +27,7 @@ export class AsignaturasService {
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(ASIGNATURAS_KEY, JSON.stringify(this.asignaturas));
   }
 

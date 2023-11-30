@@ -4,6 +4,7 @@ import { TablaAyudantiasComponent } from './components/home/templates/tabla-ayud
 import { CrearAyudantiaComponent } from './components/home/templates/crear-ayudantia/crear-ayudantia.component';
 import { EditarAyudantiaComponent } from './components/home/templates/editar-ayudantia/editar-ayudantia.component';
 import { TablaSolicitudesComponent } from './components/home/templates/tabla-solicitudes/tabla-solicitudes.component';
+import { VerSolicitudComponent } from './components/home/templates/ver-solicitud/ver-solicitud.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
     path: 'solicitudes',
     component: TablaSolicitudesComponent
   },
+  {
+    path: 'solicitudes/ver/:id_solicitud',
+    component: VerSolicitudComponent
+  }
 ];
 
 @NgModule({

@@ -23,7 +23,7 @@ export class PeriodosService {
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(PERIODOS_KEY, JSON.stringify(this.periodos));
   }
 
