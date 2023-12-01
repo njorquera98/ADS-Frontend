@@ -23,10 +23,26 @@ export class AyudantiasComponent {
 
   obtenerEstadoSolicitud(idAyudantia: number): string {
     const solicitudes = this.solicitudService.obtenerSolicitudes();
-    const solicitud = solicitudes.find((sol)=>sol.id_ayudantia==idAyudantia && sol.id_usuario==this.authService.obtenerCuenta()?.id_usuario);
-    return solicitud?.estado || "No postulado";
+    const solicitud = solicitudes.find(
+      (sol) =>
+        sol.id_ayudantia == idAyudantia &&
+        sol.id_usuario == this.authService.obtenerCuenta()?.id_usuario
+    );
+    return solicitud?.estado || 'No postulado';
   }
-  //cancelarPostulacion()
+
+  eliminarSolicitud(idAyudantia: number) {
+    const solicitudes = this.solicitudService.obtenerSolicitudes();
+    const solicitud = solicitudes.find(
+      (sol) =>
+        sol.id_ayudantia == idAyudantia &&
+        sol.id_usuario == this.authService.obtenerCuenta()?.id_usuario
+    );
+    if (solicitud) {
+      //console.log(solicitud);
+      this.solicitudService.eliminarSolicitud(solicitud.id_solicitud);
+    }
+  }
 
   showModal: boolean[] = [];
   handleModal(i: number) {

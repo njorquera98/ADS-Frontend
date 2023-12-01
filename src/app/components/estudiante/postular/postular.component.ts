@@ -29,8 +29,8 @@ export class PostularComponent {
   idAyudantia: number = 0;
   nombreEstudiante?: string;
   solicitud: Solicitud = {
-    id_solicitud: 0,
-    id_ayudantia: 0,
+    id_solicitud: 2,
+    id_ayudantia: 1,
     id_usuario: 0,
     fecha: new Date(Date.now()),
     estado: 'Postulado',

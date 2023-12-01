@@ -20,7 +20,7 @@ export class SolicitudesService {
           id_ayudantia: 0,
           id_usuario: 1,
           fecha: new Date(Date.now()),
-          estado: 'Creado',
+          estado: 'Postulado',
           id_periodo: 1,
           prioridad: 1,
           promedio_asignatura: 6.1,
@@ -31,7 +31,7 @@ export class SolicitudesService {
           id_ayudantia: 1,
           id_usuario: 2,
           fecha: new Date('2022-11-15T08:30:00Z'),
-          estado: 'Creado',
+          estado: 'No postulado',
           id_periodo: 1,
           prioridad: 1,
           promedio_asignatura: 6.1,
@@ -57,5 +57,15 @@ export class SolicitudesService {
 
   obtenerSolicitud(id: number): Solicitud | undefined {
     return this.solicitudes.find((solicitud) => solicitud.id_solicitud === id);
+  }
+
+  eliminarSolicitud(id: number) {
+    const index = this.solicitudes.findIndex(
+      (solicitud) => solicitud.id_solicitud === id
+    );
+    if (index >= 0) {
+      this.solicitudes.splice(index, 1);
+      this.guardarEnLocalStorage();
+    }
   }
 }
