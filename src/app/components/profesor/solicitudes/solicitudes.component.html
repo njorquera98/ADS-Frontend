@@ -24,7 +24,7 @@
             asignaturaService.obtenerAsignatura(solicitud.id_ayudantia)?.nombre
           }}
         </td>
-        <td>{{ solicitud.id_ayudantia }}</td>
+        <td>{{ayudantiaService.obtenerAyudantia(solicitud.id_ayudantia)?.cupos}}</td>
         <td>
           {{
             usuarioService.obetenrUsuario(solicitud.id_usuario)?.nombre +

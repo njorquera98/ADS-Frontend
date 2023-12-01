@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { SolicitudesService } from '../../../shared/services/mockups/solicitudes.service';
 import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
 import { UsuariosService } from '../../../shared/services/mockups/usuarios.service';
+import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
 
 @Component({
   selector: 'profesor-solicitudes',
@@ -15,8 +16,9 @@ export class ProfesorSolicitudesComponent {
   constructor(
     public solicitudesService: SolicitudesService,
     public asignaturaService: AsignaturasService,
-    public usuarioService: UsuariosService
+    public usuarioService: UsuariosService, public ayudantiaService: AyudantiasService
   ) {}
+  
 
   showModal: boolean[] = [];
   handleModal(i: number) {

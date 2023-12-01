@@ -43,6 +43,7 @@ export class PostularComponent {
     this.idAyudantia = Number(this.route.snapshot.paramMap.get('id_ayudantia'));
     this.solicitud.id_ayudantia = this.idAyudantia;
     const idUser = this.authService.cuenta_actual?.id_usuario;
+    this.solicitud.id_usuario = idUser || 0;
     this.nombreEstudiante =
       this.usuarioService.obetenrUsuario(idUser || 0)?.nombre +
       ' ' +
