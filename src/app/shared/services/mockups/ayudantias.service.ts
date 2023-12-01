@@ -15,7 +15,24 @@ export class AyudantiasService {
       this.ayudantias = JSON.parse(ayudantiasGuardadas);
     } else {
       this.ayudantias = [
-        { id_ayudantia: 0, id_asignatura: 0, id_usuario: 0, cupos: 2, horas: 5, estado: 'Creado', id_periodo: 0 },
+        {
+          id_ayudantia: 0,
+          id_asignatura: 0,
+          id_usuario: 0,
+          cupos: 2,
+          horas: 5,
+          estado: 'Creado',
+          id_periodo: 0,
+        },
+        {
+          id_ayudantia: 1,
+          id_asignatura: 1,
+          id_usuario: 1,
+          cupos: 1,
+          horas: 3,
+          estado: 'Creado',
+          id_periodo: 0,
+        },
       ];
       this.guardarEnLocalStorage();
     }
@@ -32,5 +49,9 @@ export class AyudantiasService {
 
   obtenerAyudantias(): Ayudantia[] {
     return this.ayudantias;
+  }
+
+  obtenerAyudantia(id: number): Ayudantia | undefined {
+    return this.ayudantias.find((ayudantia) => ayudantia.id_ayudantia === id);
   }
 }

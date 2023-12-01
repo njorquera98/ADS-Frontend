@@ -1,0 +1,68 @@
+<div
+  class="fixed w-full h-full top-0 left-0 bg-black bg-opacity-50 z-10 flex flex-col"
+>
+  <div class="bg-white m-auto p-6 border shadow-sm rounded">
+    <h1 class="text-xl font-bold mb-4">Informacion completa:</h1>
+    <h2 class="mb-4 grid grid-cols-3 gap-4 text-left">
+      <span class="font-semibold">Asignatura: {{ asignatura?.nombre }}</span>
+      <span class="font-semibold">Codigo: {{ asignatura?.codigo }}</span>
+      <span class="font-semibold"
+        >Cupos:
+        {{
+          ayudantiaService.obtenerAyudantia(solicitud?.id_ayudantia || 0)?.cupos
+        }}</span
+      >
+      <span class="font-semibold"
+        >Nombre:
+        {{
+          usuarioService.obetenrUsuario(solicitud?.id_usuario || 0)?.nombre
+        }}</span
+      >
+      <span class="font-semibold"
+        >Apellido paterno:
+        {{
+          usuarioService.obetenrUsuario(solicitud?.id_usuario || 0)
+            ?.apellido_paterno
+        }}</span
+      >
+      <span class="font-semibold"
+        >Apellido materno:
+        {{
+          usuarioService.obetenrUsuario(solicitud?.id_usuario || 0)
+            ?.apellido_materno
+        }}</span
+      >
+      <span class="font-semibold"
+        >Rut:
+        {{
+          usuarioService.obetenrUsuario(solicitud?.id_usuario || 0)?.run
+        }}</span
+      >
+      <span class="font-semibold"
+        >Promedio de notas:
+        {{
+          estudiantesService.obtenerEstudiante(solicitud?.id_usuario || 0)
+            ?.promedio_notas
+        }}</span
+      >
+      <span class="font-semibold"
+        >Promedio de asignatura: {{ solicitud?.promedio_asignatura }}</span
+      >
+      <span class="font-semibold"
+        >Fecha de solicitud:
+        {{ solicitud?.fecha | date : "dd/MM/yyyy HH:mm:ss" : "UTC" }}</span
+      >
+      <span class="font-semibold">Prioridad: {{ solicitud?.prioridad }}</span>
+      <span class="font-semibold"
+        >Ha sido ayudante?:
+        {{ solicitud?.anteriormente_ayudante ? "Si" : "No" }}</span
+      >
+    </h2>
+    <button
+      (click)="closeModal()"
+      class="text-white border-2 border-blue-500 p-2 rounded bg-blue-500 hover:bg-blue-400"
+    >
+      Cerrar
+    </button>
+  </div>
+</div>

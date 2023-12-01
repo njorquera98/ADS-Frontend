@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { createPopper } from "@popperjs/core";
 import { AuthService } from '../../../../shared/services/mockups/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -73,4 +74,8 @@ export class HomeComponent {
     }
   }
   
+  /* Javier  
+    event.preventDefault();
+    this.dropdownPopoverShow = !this.dropdownPopoverShow;
+  } */
 }

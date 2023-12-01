@@ -7,6 +7,10 @@ import { TablaSolicitudesComponent } from './components/home/templates/tabla-sol
 import { VerSolicitudComponent } from './components/home/templates/ver-solicitud/ver-solicitud.component';
 import { AyudantiasDirectorComponent } from './components/ayudantias-director/ayudantias-director.component';
 import { ResultadosEstudianteComponent } from './components/resultados-estudiante/resultados-estudiante.component';
+import { AyudantiasComponent } from './components/estudiante/ayudantias/ayudantias.component';
+import { SolicitudesComponent } from './components/estudiante/solicitudes/solicitudes.component';
+import { ProfesorSolicitudesComponent } from './components/profesor/solicitudes/solicitudes.component';
+import { PostularComponent } from './components/estudiante/postular/postular.component';
 
 const routes: Routes = [
   { 
@@ -36,11 +40,27 @@ const routes: Routes = [
   {
     path: 'solicitudes/ver/:id_solicitud',
     component: VerSolicitudComponent
-  }
+  },
+  { 
+    path: 'estudiante/ayudantias',
+    component: AyudantiasComponent
+  },
+  { 
+    path: 'estudiante/postular/:id_ayudantia', 
+    component: PostularComponent 
+  },
+  { 
+    path: 'estudiante/solicitudes', 
+    component: SolicitudesComponent 
+  },
+  { 
+    path: 'profesor/solicitudes', 
+    component: ProfesorSolicitudesComponent 
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -13,6 +13,12 @@ import { CrearAyudantiaComponent } from './components/home/templates/crear-ayuda
 import { EditarAyudantiaComponent } from './components/home/templates/editar-ayudantia/editar-ayudantia.component';
 import { TablaSolicitudesComponent } from './components/home/templates/tabla-solicitudes/tabla-solicitudes.component';
 import { VerSolicitudComponent } from './components/home/templates/ver-solicitud/ver-solicitud.component';
+import { AyudantiasComponent } from './components/estudiante/ayudantias/ayudantias.component';
+import { SolicitudesComponent } from './components/estudiante/solicitudes/solicitudes.component';
+import { ProfesorSolicitudesComponent } from './components/profesor/solicitudes/solicitudes.component';
+import { ProfesorModalComponent } from './components/profesor/modal/modal.component';
+import { EstudianteModalComponent } from './components/estudiante/modal/modal.component';
+import { PostularComponent } from './components/estudiante/postular/postular.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,13 @@ import { VerSolicitudComponent } from './components/home/templates/ver-solicitud
     CrearAyudantiaComponent,
     EditarAyudantiaComponent,
     TablaSolicitudesComponent,
-    VerSolicitudComponent
+    VerSolicitudComponent,
+    AyudantiasComponent,
+    SolicitudesComponent,
+    ProfesorSolicitudesComponent,
+    ProfesorModalComponent,
+    EstudianteModalComponent,
+    PostularComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +45,6 @@ import { VerSolicitudComponent } from './components/home/templates/ver-solicitud
     FormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

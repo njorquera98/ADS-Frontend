@@ -34,4 +34,8 @@ export class EstudiantesService {
   obtenerEstudiantes(): Estudiante[] {
     return this.estudiantes;
   }
+
+  obtenerEstudiante(id: number): Estudiante | undefined {
+    return this.estudiantes.find((estudiante) => estudiante.id_usuario === id);
+  }
 }

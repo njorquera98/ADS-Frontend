@@ -39,4 +39,10 @@ export class AsignaturasService {
   obtenerAsignaturas(): Asignatura[] {
     return this.asignaturas;
   }
+
+  obtenerAsignatura(id: number): Asignatura | undefined {
+    return this.asignaturas.find(
+      (asignatura) => asignatura.id_asignatura === id
+    );
+  }
 }
