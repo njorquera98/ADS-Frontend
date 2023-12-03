@@ -1,33 +1,47 @@
-<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md">
-  <h2 class="text-2xl font-semibold mb-5">Formulario de Postulacion</h2>
+<div
+  class="max-w-md mx-auto mt-10 p-6 bg-white rounded-md shadow-md dark:bg-gray-700"
+>
+  <h2 class="text-2xl font-semibold mb-5 dark:text-white">
+    Formulario de Postulacion
+  </h2>
   <form>
     <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-600"
+      <label class="block text-sm font-medium text-gray-600 dark:text-gray-200"
         >Nombre de la Asignatura</label
       >
-      <div class="border h-10 flex items-center pl-2 text-gray-400">
+      <div
+        class="border h-10 flex items-center pl-2 text-gray-400 bg-white rounded"
+      >
         {{ asignaturaService.obtenerAsignatura(idAyudantia || 0)?.nombre }}
       </div>
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-600">Código</label>
-      <div class="border h-10 flex items-center pl-2 text-gray-400">
+      <label class="block text-sm font-medium text-gray-600 dark:text-gray-200"
+        >Código</label
+      >
+      <div
+        class="border h-10 flex items-center pl-2 text-gray-400 bg-white rounded"
+      >
         {{ asignaturaService.obtenerAsignatura(idAyudantia || 0)?.codigo }}
       </div>
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-600"
+      <label class="block text-sm font-medium text-gray-600 dark:text-gray-200"
         >Nombre Completo Estudiante</label
       >
-      <div class="border h-10 flex items-center pl-2 text-gray-400">
+      <div
+        class="border h-10 flex items-center pl-2 text-gray-400 bg-white rounded"
+      >
         {{ nombreEstudiante }}
       </div>
     </div>
 
     <div class="mb-4">
-      <label for="prioridad" class="block text-sm font-medium text-gray-600"
+      <label
+        for="prioridad"
+        class="block text-sm font-medium text-gray-600 dark:text-gray-200"
         >Prioridad</label
       >
       <select
@@ -44,7 +58,9 @@
     </div>
 
     <div class="mb-4">
-      <label class="block text-sm font-medium text-gray-600" for="promedio"
+      <label
+        class="block text-sm font-medium text-gray-600 dark:text-gray-200"
+        for="promedio"
         >Promedio de Asignatura</label
       >
       <input
@@ -65,7 +81,7 @@
           name="anteriormente_ayudante"
           [(ngModel)]="solicitud.anteriormente_ayudante"
         />
-        <span class="text-sm font-medium text-gray-600"
+        <span class="text-sm font-medium text-gray-600 dark:text-gray-200"
           >Anteriormente Ayudante</span
         >
       </label>
@@ -73,7 +89,7 @@
 
     <button
       type="submit"
-      class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600"
+      class="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700"
       (click)="Postular()"
     >
       Postular
