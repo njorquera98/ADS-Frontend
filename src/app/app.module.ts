@@ -11,6 +11,11 @@ import { ProfesorModalComponent } from './components/profesor/modal/modal.compon
 import { EstudianteModalComponent } from './components/estudiante/modal/modal.component';
 import { FormsModule } from '@angular/forms';
 import { PostularComponent } from './components/estudiante/postular/postular.component';
+import { TablaAyudantiasComponent } from './components/home/templates/tabla-ayudantias/tabla-ayudantias.component';
+import { CrearAyudantiaComponent } from './components/home/templates/crear-ayudantia/crear-ayudantia.component';
+import { EditarAyudantiaComponent } from './components/home/templates/editar-ayudantia/editar-ayudantia.component';
+import { TablaSolicitudesComponent } from './components/home/templates/tabla-solicitudes/tabla-solicitudes.component';
+import { VerSolicitudComponent } from './components/home/templates/ver-solicitud/ver-solicitud.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,11 @@ import { PostularComponent } from './components/estudiante/postular/postular.com
     ProfesorModalComponent,
     EstudianteModalComponent,
     PostularComponent,
+    TablaAyudantiasComponent,
+    CrearAyudantiaComponent,
+    EditarAyudantiaComponent,
+    TablaSolicitudesComponent,
+    VerSolicitudComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

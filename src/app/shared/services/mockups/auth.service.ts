@@ -4,13 +4,12 @@ import { EstudiantesService } from './estudiantes.service';
 import { Estudiante } from '../../../models/estudiante.model';
 import { UsuariosService } from './usuarios.service';
 
-const AUTH_KEY = "auth_cuenta"
+const AUTH_KEY = 'auth_cuenta';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   cuenta_actual?: Usuario | Estudiante;
 
   constructor(private usuariosService: UsuariosService) {
@@ -23,12 +22,14 @@ export class AuthService {
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(AUTH_KEY, JSON.stringify(this.cuenta_actual));
   }
 
   cambiarCuenta(id: number) {
-    this.cuenta_actual = this.usuariosService.usuarios.find(val => val.id_usuario === id);
+    this.cuenta_actual = this.usuariosService.usuarios.find(
+      (val) => val.id_usuario === id
+    );
     this.guardarEnLocalStorage();
   }
 

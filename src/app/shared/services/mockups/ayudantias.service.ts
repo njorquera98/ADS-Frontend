@@ -24,15 +24,6 @@ export class AyudantiasService {
           estado: 'Creado',
           id_periodo: 0,
         },
-        {
-          id_ayudantia: 1,
-          id_asignatura: 1,
-          id_usuario: 1,
-          cupos: 1,
-          horas: 3,
-          estado: 'Creado',
-          id_periodo: 0,
-        },
       ];
       this.guardarEnLocalStorage();
     }

@@ -17,24 +17,23 @@ export class EstudiantesService {
       this.estudiantes = [
         {
           id_usuario: 1,
-          nro_cuenta: '3214124',
-          tipo_cuenta: 'corriente',
-          banco: 'banco estado',
-          promedio_notas: 4.3,
-        },
-        {
-          id_usuario: 2,
-          nro_cuenta: '2214124',
-          tipo_cuenta: 'corriente',
-          banco: 'banco de chile',
-          promedio_notas: 5.1,
+          nombre: 'Luis',
+          run: '2.222.222-2',
+          apellido_paterno: 'Gonzales',
+          apellido_materno: 'Gonzales',
+          telefono: '12345676',
+          rol: 1,
+          nro_cuenta: '2222222',
+          tipo_cuenta: 'Vista',
+          banco: 'Banco Estado',
+          promedio_notas: 6.5,
         },
       ];
       this.guardarEnLocalStorage();
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(ESTUDIANTES_KEY, JSON.stringify(this.estudiantes));
   }
 

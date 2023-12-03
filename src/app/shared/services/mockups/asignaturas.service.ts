@@ -23,16 +23,21 @@ export class AsignaturasService {
           nombre: 'Programación basica',
           letra: 'A',
         },
-        { id_asignatura: 1, codigo: 'A1', nombre: 'Base de Datos', letra: 'B' },
-        { id_asignatura: 2, codigo: 'A2', nombre: 'Proyecto 4', letra: 'A' },
-        { id_asignatura: 3, codigo: 'B1', nombre: 'Calculo 2', letra: 'B' },
+        {
+          id_asignatura: 1,
+          codigo: 'A0',
+          nombre: 'Programación basica',
+          letra: 'B',
+        },
+        { id_asignatura: 2, codigo: 'A1', nombre: 'Base de Datos', letra: 'A' },
+        { id_asignatura: 3, codigo: 'A1', nombre: 'Base de Datos', letra: 'B' },
       ];
       // Guarda las asignaturas iniciales en localStorage
       this.guardarEnLocalStorage();
     }
   }
 
-  private guardarEnLocalStorage() {
+  guardarEnLocalStorage() {
     localStorage.setItem(ASIGNATURAS_KEY, JSON.stringify(this.asignaturas));
   }
 
