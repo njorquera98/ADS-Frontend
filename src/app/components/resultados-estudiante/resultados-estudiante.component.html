@@ -1,10 +1,10 @@
 <div class="container m-auto py-6 px-8"> <!-- container m-auto | w-full -->
 
-    <div class="flex flex-col w-full bg-white border border-gray-100 rounded-lg shadow-md py-4">
+    <div class="flex flex-col w-full bg-white rounded-lg shadow-md pt-4 pb-2">
         <h3 class="text-xl text-gray-900 font-semibold px-6 mb-4">Resultados de mis postulaciones</h3>
 
         <div class="w-full overflow-x-auto">
-            <table class="w-full border-collapse ">
+            <table class="w-full border-collapse">
                 <thead>
                     <tr>
                         <th
@@ -37,29 +37,28 @@
                         </th>
                     </tr>
                 </thead>
-
                 <tbody>
                     <tr *ngFor="let item of resultados; let i = index" class="hover:bg-gray-100">
                         <td
-                            class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                            class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap py-6">
                             {{i + 1}}
                         </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap py-6">
                             {{item.ayudantia?.asignatura?.codigo}}
                         </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap py-6">
                             {{item.ayudantia?.asignatura?.nombre}}
                         </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
+                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap py-6">
                             {{item.ayudantia?.profesor?.nombre}} {{item.ayudantia?.profesor?.apellido_paterno}}
                         </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap py-6 text-center">
                             {{item.ayudantia?.cupos}}
                         </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
+                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap py-6 text-center">
                             {{item.ayudantia?.horas}}
                         </td>
-                        <td class="flex justify-center border-t-0 px-6 border-l-0 border-r-0 whitespace-nowrap p-4">
+                        <td class="flex justify-center border-t-0 px-6 border-l-0 border-r-0 whitespace-nowrap py-4">
                             <div *ngIf="item.estado == 'aprobado'" class="flex justify-center items-center w-40 rounded-lg">
                                 <p class="inline px-5 py-1 rounded-lg bg-green-200 text-green-800 mr-4">Seleccionado</p>
                             </div>
