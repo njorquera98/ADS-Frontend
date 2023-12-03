@@ -139,7 +139,7 @@
                   role="menuitem"
                   (click)="toggleTheme()"
                 >
-                @if (!isDarkMode) {
+                  @if (!isDarkMode) {
                   <svg
                     id="theme-toggle-dark-icon"
                     class="w-5 h-5"
@@ -165,9 +165,9 @@
                       clip-rule="evenodd"
                     ></path>
                   </svg>
-                }
-                <span class="mx-2">Cambiar modo</span>
-              </button>
+                  }
+                  <span class="mx-2">Cambiar modo</span>
+                </button>
               </li>
               <li>
                 <a
@@ -186,6 +186,5 @@
 </nav>
 
 <div class="p-8 rounded-lg mt-14">
-<!-- <div class="p-8 mt-14 flex flex-col"> Javier-->  
   <router-outlet></router-outlet>
 </div>

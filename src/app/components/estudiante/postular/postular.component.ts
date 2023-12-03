@@ -29,8 +29,8 @@ export class PostularComponent {
   idAyudantia: number = 0;
   nombreEstudiante?: string;
   solicitud: Solicitud = {
-    id_solicitud: 0,
-    id_ayudantia: 0,
+    id_solicitud: 2,
+    id_ayudantia: 1,
     id_usuario: 0,
     fecha: new Date(Date.now()),
     estado: 'Postulado',
@@ -43,6 +43,7 @@ export class PostularComponent {
     this.idAyudantia = Number(this.route.snapshot.paramMap.get('id_ayudantia'));
     this.solicitud.id_ayudantia = this.idAyudantia;
     const idUser = this.authService.cuenta_actual?.id_usuario;
+    this.solicitud.id_usuario = idUser || 0;
     this.nombreEstudiante =
       this.usuarioService.obetenrUsuario(idUser || 0)?.nombre +
       ' ' +

@@ -1,45 +1,47 @@
 <div class="w-full flex flex-col max-w-5xl mx-auto">
-  <h1 class="font-bold text-xl mb-4">Ayudantias</h1>
-  <table class="table-auto text-center shadow-md rounded">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Asignatura</th>
-        <th>Codigo asignatura</th>
-        <th>Cupos</th>
-        <th>Horas</th>
-        <th>Estado</th>
-        <th>Acciones</th>
+  <h1 class="font-bold text-2xl mb-4 dark:text-white">Ayudantias</h1>
+  <table class="w-full text-center text-gray-600 dark:text-gray-400 rounded">
+    <thead class="uppercase dark:text-gray-400 bg-gray-800">
+      <tr class="text-white">
+        <th scope="col" class="px-6 py-3">#</th>
+        <th scope="col" class="px-6 py-3">Asignatura</th>
+        <th scope="col" class="px-6 py-3">Codigo asignatura</th>
+        <th scope="col" class="px-6 py-3">Cupos</th>
+        <th scope="col" class="px-6 py-3">Horas</th>
+        <th scope="col" class="px-6 py-3">Estado</th>
+        <th scope="col" class="px-6 py-3">Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <!-- @for (ayudantia of ayudantias; track $index) {
-      <tr>
-        <td>{{ index }}</td>
-        <td>{{ ayudantia.id_asignatura }}</td>
-        <td>{{ ayudantia.cupos }}</td>
-        <td>{{ ayudantia.horas }}</td>
-        <td>{{ ayudantia.estado }}</td>
-        <td>{{ ayudantia.id_periodo }}</td>
-      </tr>
-      } -->
-      <tr *ngFor="let ayudantia of ayudantiasService.ayudantias; index as i">
-        <td>{{ i + 1 }}</td>
-        <td>
+      <tr
+        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+        *ngFor="let ayudantia of ayudantiasService.ayudantias; index as i"
+      >
+        <td scope="col" class="px-6 py-3">{{ i + 1 }}</td>
+        <td scope="col" class="px-6 py-3">
           {{
             asignaturaService.obtenerAsignatura(ayudantia.id_asignatura)?.nombre
           }}
         </td>
-        <td>
+        <td scope="col" class="px-6 py-3">
           {{
             asignaturaService.obtenerAsignatura(ayudantia.id_asignatura)?.codigo
           }}
         </td>
-        <td>{{ ayudantia.cupos }}</td>
+        <td scope="col" class="px-6 py-3">{{ ayudantia.cupos }}</td>
         <td>{{ ayudantia.horas }}</td>
-        <td>{{ ayudantia.estado }}</td>
+        @if (obtenerEstadoSolicitud(ayudantia.id_ayudantia)=='Postulado') {
+        <td class="text-green-600 font-bold px-6 py-3">
+          {{ obtenerEstadoSolicitud(ayudantia.id_ayudantia) }}
+        </td>
+        } @else {
+        <td class="font-bold px-6 py-3">
+          {{ obtenerEstadoSolicitud(ayudantia.id_ayudantia) }}
+        </td>
+        }
         <td class="flex justify-around">
-          @if (ayudantia.estado=='Creado') {
+          @if (obtenerEstadoSolicitud(ayudantia.id_ayudantia) == "No postulado")
+          {
           <button
             class="text-green-600 flex flex-col items-center hover:text-green-400"
             routerLink="/estudiante/postular/{{ ayudantia.id_ayudantia }}"
@@ -58,32 +60,27 @@
                 d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"
               />
             </svg>
-            postular
+            <p class="underline">postular</p>
           </button>
           }@else {
-          <button class="text-red-600">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2"
-              stroke="currentColor"
-              class="w-7 h-7"
+          <button
+            class="text-red-600 flex flex-col items-center"
+            (click)="eliminarSolicitud(ayudantia.id_ayudantia)"
+          >
+            <div
+              class="flex justify-center items-center w-8 h-8 bg-red-600 text-white rounded-full hover:bg-red-500"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg></button
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <!-- <p class="underline hover:text-red-500">cancelar</p> --></button
           >}
         </td>
-        <estudiante-modal
+        <!-- <estudiante-modal
           class="dark:text-black"
           *ngIf="showModal[i]"
           (closeModalEvent)="handleModal(i)"
           [idAyudantia]="ayudantia.id_ayudantia"
-        ></estudiante-modal>
+        ></estudiante-modal> -->
       </tr>
     </tbody>
   </table>

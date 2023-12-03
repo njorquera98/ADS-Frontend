@@ -1,18 +1,19 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { createPopper } from "@popperjs/core";
+import { createPopper } from '@popperjs/core';
 import { AuthService } from '../../../../shared/services/mockups/auth.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
 })
 export class HomeComponent {
   dropdownPopoverShow = false;
-  
-  @ViewChild("btnDropdownUserRef", { static: false }) btnDropdownUserRef?: ElementRef;
-  @ViewChild("popoverDropdownUserRef", { static: false }) popoverDropdownUserRef?: ElementRef;
+
+  @ViewChild('btnDropdownUserRef', { static: false })
+  btnDropdownUserRef?: ElementRef;
+  @ViewChild('popoverDropdownUserRef', { static: false })
+  popoverDropdownUserRef?: ElementRef;
 
   isDarkMode: boolean;
 
@@ -29,23 +30,23 @@ export class HomeComponent {
   }
 
   ngAfterViewInit(): void {
-      createPopper(
-        this.btnDropdownUserRef?.nativeElement,
-        this.popoverDropdownUserRef?.nativeElement,
-        {
-          placement: "bottom-end",
-          modifiers: [
-            {
-              name: 'offset',
-              options: {
-                offset: [0, 8],
-              }
-            }
-          ]
-        }
-      );
+    createPopper(
+      this.btnDropdownUserRef?.nativeElement,
+      this.popoverDropdownUserRef?.nativeElement,
+      {
+        placement: 'bottom-end',
+        modifiers: [
+          {
+            name: 'offset',
+            options: {
+              offset: [0, 8],
+            },
+          },
+        ],
+      }
+    );
   }
-  
+
   public toggleDropdown(event: any) {
     this.dropdownPopoverShow = !this.dropdownPopoverShow;
   }
@@ -73,9 +74,4 @@ export class HomeComponent {
       }
     }
   }
-  
-  /* Javier  
-    event.preventDefault();
-    this.dropdownPopoverShow = !this.dropdownPopoverShow;
-  } */
 }

@@ -4,7 +4,7 @@ import { Ayudantia } from '../../../models/ayudantia.model';
 const AYUDANTIAS_KEY = 'ayudantias';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AyudantiasService {
   ayudantias: Ayudantia[] = [];
@@ -21,15 +21,6 @@ export class AyudantiasService {
           id_usuario: 0,
           cupos: 2,
           horas: 5,
-          estado: 'Creado',
-          id_periodo: 0,
-        },
-        {
-          id_ayudantia: 1,
-          id_asignatura: 1,
-          id_usuario: 1,
-          cupos: 1,
-          horas: 3,
           estado: 'Creado',
           id_periodo: 0,
         },

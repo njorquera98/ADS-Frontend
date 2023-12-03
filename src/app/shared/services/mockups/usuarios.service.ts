@@ -4,7 +4,7 @@ import { Usuario } from '../../../models/usuario.model';
 const USUARIOS_KEY = 'usuarios';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuariosService {
   usuarios: Usuario[] = [];

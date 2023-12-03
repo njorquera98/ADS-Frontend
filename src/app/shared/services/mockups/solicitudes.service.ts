@@ -4,7 +4,7 @@ import { Solicitud } from '../../../models/solicitud.model';
 const SOLICITUDES_KEY = 'solicitudes';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SolicitudesService {
   solicitudes: Solicitud[] = [];
@@ -22,20 +22,9 @@ export class SolicitudesService {
           fecha: new Date(Date.now()),
           estado: 'Creado',
           id_periodo: 1,
-          prioridad: 1,
+          prioridad: 0,
           promedio_asignatura: 6.1,
           anteriormente_ayudante: false,
-        },
-        {
-          id_solicitud: 1,
-          id_ayudantia: 1,
-          id_usuario: 2,
-          fecha: new Date('2022-11-15T08:30:00Z'),
-          estado: 'Creado',
-          id_periodo: 1,
-          prioridad: 1,
-          promedio_asignatura: 6.1,
-          anteriormente_ayudante: true,
         },
       ];
       this.guardarEnLocalStorage();
@@ -57,5 +46,15 @@ export class SolicitudesService {
 
   obtenerSolicitud(id: number): Solicitud | undefined {
     return this.solicitudes.find((solicitud) => solicitud.id_solicitud === id);
+  }
+
+  eliminarSolicitud(id: number) {
+    const index = this.solicitudes.findIndex(
+      (solicitud) => solicitud.id_solicitud === id
+    );
+    if (index >= 0) {
+      this.solicitudes.splice(index, 1);
+      this.guardarEnLocalStorage();
+    }
   }
 }
