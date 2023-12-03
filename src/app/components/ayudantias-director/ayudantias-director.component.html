@@ -1,102 +1,154 @@
-<div class="container m-auto py-6 px-8"> <!-- container m-auto | w-full -->
+<div class="container m-auto py-6 px-8">
+  <!-- container m-auto | w-full -->
 
-    <div class="flex flex-col w-full bg-white border border-gray-100 rounded-lg shadow-md py-4">
-        <h3 class="text-xl text-gray-900 font-semibold px-6 mb-4">Solicitudes de ayudantias</h3>
+  <div class="flex flex-col w-full rounded-lg shadow-md py-4 dark:bg-gray-900">
+    <h3 class="text-xl text-gray-900 font-semibold px-6 mb-4 dark:text-white">
+      Solicitudes de ayudantias
+    </h3>
 
-        <div class="w-full overflow-x-auto">
-            <table class="w-full border-collapse ">
-                <thead>
-                    <tr>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                            N°
-                        </th>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                            Profesor
-                        </th>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                            RUT
-                        </th>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left">
-                            ASIGNATURA
-                        </th>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center">
-                            GRUPO
-                        </th>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center">
-                            CUPO
-                        </th>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center">
-                            HORAS
-                        </th>
-                        <th
-                            class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center">
-                            ACCIÓN
-                        </th>
-                    </tr>
-                </thead>
+    <div class="w-full overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left"
+            >
+              N°
+            </th>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left"
+            >
+              Profesor
+            </th>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left"
+            >
+              RUT
+            </th>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-left"
+            >
+              ASIGNATURA
+            </th>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center"
+            >
+              GRUPO
+            </th>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center"
+            >
+              CUPO
+            </th>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center"
+            >
+              HORAS
+            </th>
+            <th
+              class="px-6 bg-gray-800 text-white py-3 text-sm uppercase whitespace-nowrap font-semibold text-center"
+            >
+              ACCIÓN
+            </th>
+          </tr>
+        </thead>
 
-                <tbody>
-                    <tr *ngFor="let item of ayudantias; let i = index" class="hover:bg-gray-100">
-                        <td
-                            class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{i + 1}}
-                        </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{item.nombre_profesor}}
-                        </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{item.rut}}
-                        </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4">
-                            {{item.nombre_asignatura}}
-                        </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
-                            {{item.grupo}}
-                        </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
-                            {{item.cupo}}
-                        </td>
-                        <td class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center">
-                            {{item.horas}}
-                        </td>
-                        <td class="flex justify-center border-t-0 px-6 border-l-0 border-r-0 whitespace-nowrap p-4">
-                            <div *ngIf="item.estado == 'aprobado'" class="flex justify-center items-center w-40 rounded-lg">
-                                <p class="inline px-5 py-1 rounded-lg bg-green-200 text-green-800 mr-4">Aprobado</p>
-                                <button class="flex justify-center items-center w-7 h-7 bg-gray-800 hover:bg-gray-700 text-white rounded-full"
-                                    (click)="reiniciarEstadoAyudantia(item.id)">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </button>
-                            </div>
-                            <div *ngIf="item.estado == 'rechazado'" class="flex justify-center items-center w-40 rounded-lg">
-                                <p class="inline px-4 py-1 rounded-lg bg-red-200 text-red-700 mr-4">Rechazado</p>
-                                <button class="flex justify-center items-center w-7 h-7 bg-gray-800 hover:bg-gray-700 text-white rounded-full"
-                                    (click)="reiniciarEstadoAyudantia(item.id)">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </button>
-                            </div>
-                            <div *ngIf="item.estado == 'en espera'" class="flex justify-center items-center w-40 rounded-lg space-x-8">
-                                <button class="flex justify-center items-center w-8 h-8 bg-green-700 text-white hover:bg-green-900 rounded-full"
-                                    (click)="aprobarAyudantia(item.id)">
-                                    <i class="fa-solid fa-check"></i>
-                                </button>
-                                <button class="flex justify-center items-center w-8 h-8 bg-red-600 text-white hover:bg-red-800 rounded-full"
-                                    (click)="rechazarAyudantia(item.id)">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-                            </div>                    
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+        <tbody>
+          <tr
+            *ngFor="let item of ayudantias; let i = index"
+            class="hover:bg-gray-100"
+          >
+            <td
+              class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4"
+            >
+              {{ i + 1 }}
+            </td>
+            <td
+              class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4"
+            >
+              {{ item.nombre_profesor }}
+            </td>
+            <td
+              class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4"
+            >
+              {{ item.rut }}
+            </td>
+            <td
+              class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4"
+            >
+              {{ item.nombre_asignatura }}
+            </td>
+            <td
+              class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center"
+            >
+              {{ item.grupo }}
+            </td>
+            <td
+              class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center"
+            >
+              {{ item.cupo }}
+            </td>
+            <td
+              class="border-t-0 px-6 border-l-0 border-r-0 text-sm whitespace-nowrap p-4 text-center"
+            >
+              {{ item.horas }}
+            </td>
+            <td
+              class="flex justify-center border-t-0 px-6 border-l-0 border-r-0 whitespace-nowrap p-4"
+            >
+              <div
+                *ngIf="item.estado == 'aprobado'"
+                class="flex justify-center items-center w-40 rounded-lg"
+              >
+                <p
+                  class="inline px-5 py-1 rounded-lg bg-green-200 text-green-800 mr-4"
+                >
+                  Aprobado
+                </p>
+                <button
+                  class="flex justify-center items-center w-7 h-7 bg-gray-800 hover:bg-gray-700 text-white rounded-full"
+                  (click)="reiniciarEstadoAyudantia(item.id)"
+                >
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
+              </div>
+              <div
+                *ngIf="item.estado == 'rechazado'"
+                class="flex justify-center items-center w-40 rounded-lg"
+              >
+                <p
+                  class="inline px-4 py-1 rounded-lg bg-red-200 text-red-700 mr-4"
+                >
+                  Rechazado
+                </p>
+                <button
+                  class="flex justify-center items-center w-7 h-7 bg-gray-800 hover:bg-gray-700 text-white rounded-full"
+                  (click)="reiniciarEstadoAyudantia(item.id)"
+                >
+                  <i class="fa-solid fa-rotate-right"></i>
+                </button>
+              </div>
+              <div
+                *ngIf="item.estado == 'en espera'"
+                class="flex justify-center items-center w-40 rounded-lg space-x-8"
+              >
+                <button
+                  class="flex justify-center items-center w-8 h-8 bg-green-700 text-white hover:bg-green-900 rounded-full"
+                  (click)="aprobarAyudantia(item.id)"
+                >
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <button
+                  class="flex justify-center items-center w-8 h-8 bg-red-600 text-white hover:bg-red-800 rounded-full"
+                  (click)="rechazarAyudantia(item.id)"
+                >
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-
+  </div>
 </div>
