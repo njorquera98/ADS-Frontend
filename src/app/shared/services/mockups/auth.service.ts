@@ -15,10 +15,10 @@ export class AuthService {
   constructor(private usuariosService: UsuariosService) {
     const cuentaGuardada = localStorage.getItem(AUTH_KEY);
     if (cuentaGuardada) {
-      this.cuenta_actual = JSON.parse(cuentaGuardada);
+      // this.cuenta_actual = JSON.parse(cuentaGuardada);
     } else {
-      this.cuenta_actual = usuariosService.usuarios[0];
-      this.guardarEnLocalStorage();
+      // this.cuenta_actual = usuariosService.usuarios[0];
+      // this.guardarEnLocalStorage();
     }
   }
 
