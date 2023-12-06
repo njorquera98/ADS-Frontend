@@ -61,6 +61,6 @@ export class VerSolicitudComponent implements OnInit{
   }
 
   cancelar() {
-    this.router.navigate(['solicitudes']);
+    this.router.navigate(['profesor/solicitudes']);
   }
 }

@@ -8,24 +8,29 @@ import { TablaSolicitudesComponent } from './components/profesor/tabla-solicitud
 
 const routes: Routes = [
   {
-    path: 'profesor/ayudantias',
-    component: TablaAyudantiasComponent
-  },
-  {
-    path: 'profesor/ayudantias/crear',
-    component: CrearAyudantiaComponent
-  },
-  {
-    path: 'profesor/ayudantias/editar/:id_ayudantia',
-    component: EditarAyudantiaComponent
-  },
-  {
-    path: 'profesor/solicitudes',
-    component: TablaSolicitudesComponent
-  },
-  {
-    path: 'profesor/solicitudes/ver/:id_solicitud',
-    component: VerSolicitudComponent
+    path: 'profesor',
+    children: [
+      {
+        path: 'ayudantias',
+        component: TablaAyudantiasComponent
+      },
+      {
+        path: 'ayudantias/crear',
+        component: CrearAyudantiaComponent
+      },
+      {
+        path: 'ayudantias/editar/:id_ayudantia',
+        component: EditarAyudantiaComponent
+      },
+      {
+        path: 'solicitudes',
+        component: TablaSolicitudesComponent
+      },
+      {
+        path: 'solicitudes/ver/:id_solicitud',
+        component: VerSolicitudComponent
+      }
+    ]
   }
 ];
 
