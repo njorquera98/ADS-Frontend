@@ -1,36 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Ayudantia } from '../../../models/ayudantia.model';
-
-const AYUDANTIAS_KEY = 'ayudantias';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AyudantiasService {
-  ayudantias: Ayudantia[] = [];
+  apiUrl = 'http://localhost:3000';
+  apiVersion = 'v1';
 
-  constructor() {
-    const ayudantiasGuardadas = localStorage.getItem(AYUDANTIAS_KEY);
-    if (ayudantiasGuardadas) {
-      this.ayudantias = JSON.parse(ayudantiasGuardadas);
-    } else {
-      this.ayudantias = [
-        { id_ayudantia: 0, id_asignatura: 0, id_usuario: 0, cupos: 2, horas: 5, estado: 'Creado', id_periodo: 0 },
-      ];
-      this.guardarEnLocalStorage();
-    }
+  constructor(private http: HttpClient) {}
+
+  obtenerAyudantias(): Observable<Ayudantia[]> {
+    return this.http.get<Ayudantia[]>(`${this.apiUrl}/${this.apiVersion}/ayudantias`);
   }
 
-  guardarEnLocalStorage() {
-    localStorage.setItem(AYUDANTIAS_KEY, JSON.stringify(this.ayudantias));
+  obtenerAyudantiaPorId(id: number): Observable<Ayudantia> {
+    return this.http.get<Ayudantia>(`${this.apiUrl}/${this.apiVersion}/ayudantias/${id}`);
   }
 
-  agregarAyudantia(ayudantia: Ayudantia) {
-    this.ayudantias.push(ayudantia);
-    this.guardarEnLocalStorage();
+  agregarAyudantia(ayudantia: Ayudantia): Observable<Ayudantia> {
+    return this.http.post<Ayudantia>(`${this.apiUrl}/${this.apiVersion}/ayudantias`, ayudantia);
   }
 
-  obtenerAyudantias(): Ayudantia[] {
-    return this.ayudantias;
+  actualizarAyudantia(ayudantia: Ayudantia): Observable<Ayudantia> {
+    return this.http.patch<Ayudantia>(`${this.apiUrl}/${this.apiVersion}/ayudantias/${ayudantia.id_ayudantia}`, ayudantia);
+  }
+
+  eliminarAyudantia(id: number): Observable<Ayudantia> {
+    return this.http.delete<Ayudantia>(`${this.apiUrl}/${this.apiVersion}/ayudantias/${id}`);
   }
 }

@@ -1,37 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Estudiante } from '../../../models/estudiante.model';
-
-const ESTUDIANTES_KEY = 'estudiantes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstudiantesService {
-  estudiantes: Estudiante[] = [];
+  apiUrl = 'http://localhost:3000';
+  apiVersion = 'v1';
 
-  constructor() {
-    const estudiantesGuardados = localStorage.getItem(ESTUDIANTES_KEY);
-    if (estudiantesGuardados) {
-      this.estudiantes = JSON.parse(estudiantesGuardados);
-    } else {
-      this.estudiantes = [
-        { id_usuario: 1, nombre: "Luis", run: "2.222.222-2", apellido_paterno: "Gonzales", apellido_materno: "Gonzales", 
-          telefono: "12345676", rol: 1, nro_cuenta: '2222222', tipo_cuenta: 'Vista', banco: 'Banco Estado', promedio_notas: 6.5 },
-      ];
-      this.guardarEnLocalStorage();
-    }
+  constructor(private http: HttpClient) {}
+
+  obtenerEstudiantes(): Observable<Estudiante[]> {
+    return this.http.get<Estudiante[]>(`${this.apiUrl}/${this.apiVersion}/estudiantes`);
   }
 
-  guardarEnLocalStorage() {
-    localStorage.setItem(ESTUDIANTES_KEY, JSON.stringify(this.estudiantes));
+  obtenerEstudiantePorId(id: number): Observable<Estudiante> {
+    return this.http.get<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes/${id}`);
   }
 
-  agregarEstudiante(estudiante: Estudiante) {
-    this.estudiantes.push(estudiante);
-    this.guardarEnLocalStorage();
+  agregarEstudiante(estudiante: Estudiante): Observable<Estudiante> {
+    return this.http.post<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes`, estudiante);
   }
 
-  obtenerEstudiantes(): Estudiante[] {
-    return this.estudiantes;
+  actualizarEstudiante(estudiante: Estudiante): Observable<Estudiante> {
+    return this.http.patch<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes/${estudiante.id_estudiante}`, estudiante);
+  }
+
+  eliminarEstudiante(id: number): Observable<Estudiante> {
+    return this.http.delete<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes/${id}`);
   }
 }

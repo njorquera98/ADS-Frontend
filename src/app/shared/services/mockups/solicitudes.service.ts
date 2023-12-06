@@ -1,37 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Solicitud } from '../../../models/solicitud.model';
-
-const SOLICITUDES_KEY = 'solicitudes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SolicitudesService {
-  solicitudes: Solicitud[] = [];
+  apiUrl = 'http://localhost:3000';
+  apiVersion = 'v1';
 
-  constructor() {
-    const solicitudesGuardadas = localStorage.getItem(SOLICITUDES_KEY);
-    if (solicitudesGuardadas) {
-      this.solicitudes = JSON.parse(solicitudesGuardadas);
-    } else {
-      this.solicitudes = [
-        { id_solicitud: 0, id_ayudantia: 0, id_usuario: 1, fecha: new Date(Date.now()), estado: 'Creado', id_periodo: 1, 
-          prioridad: 0, promedio_asignatura: 6.1, anteriormente_ayudante: false }
-      ];
-      this.guardarEnLocalStorage();
-    }
+  constructor(private http: HttpClient) {}
+
+  obtenerSolicitudes(): Observable<Solicitud[]> {
+    return this.http.get<Solicitud[]>(`${this.apiUrl}/${this.apiVersion}/solicitudes`);
   }
 
-  guardarEnLocalStorage() {
-    localStorage.setItem(SOLICITUDES_KEY, JSON.stringify(this.solicitudes));
+  obtenerSolicitudPorId(id: number): Observable<Solicitud> {
+    return this.http.get<Solicitud>(`${this.apiUrl}/${this.apiVersion}/solicitudes/${id}`);
   }
 
-  agregarSolicitud(solicitud: Solicitud) {
-    this.solicitudes.push(solicitud);
-    this.guardarEnLocalStorage();
+  agregarSolicitud(solicitud: Solicitud): Observable<Solicitud> {
+    return this.http.post<Solicitud>(`${this.apiUrl}/${this.apiVersion}/solicitudes`, solicitud);
   }
 
-  obtenerSolicitudes(): Solicitud[] {
-    return this.solicitudes;
+  actualizarSolicitud(solicitud: Solicitud): Observable<Solicitud> {
+    return this.http.patch<Solicitud>(`${this.apiUrl}/${this.apiVersion}/solicitudes/${solicitud.id_solicitud}`, solicitud);
+  }
+
+  eliminarSolicitud(id: number): Observable<Solicitud> {
+    return this.http.delete<Solicitud>(`${this.apiUrl}/${this.apiVersion}/solicitudes/${id}`);
   }
 }

@@ -1,42 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Asignatura } from '../../../models/asignatura.model';
-
-const ASIGNATURAS_KEY = 'asignaturas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AsignaturasService {
-  asignaturas: Asignatura[] = [];
+  apiUrl = 'http://localhost:3000';
+  apiVersion = 'v1';
 
-  constructor() {
-    // Intenta cargar las asignaturas desde localStorage al inicializar el servicio
-    const asignaturasGuardadas = localStorage.getItem(ASIGNATURAS_KEY);
-    if (asignaturasGuardadas) {
-      this.asignaturas = JSON.parse(asignaturasGuardadas);
-    } else {
-      // Si no hay datos en localStorage, establece algunas asignaturas iniciales
-      this.asignaturas = [
-        { id_asignatura: 0, codigo: 'A0', nombre: "Programación basica", letra: 'A' },
-        { id_asignatura: 1, codigo: 'A0', nombre: "Programación basica", letra: 'B' },
-        { id_asignatura: 2, codigo: 'A1', nombre: "Base de Datos", letra: 'A' },
-        { id_asignatura: 3, codigo: 'A1', nombre: "Base de Datos", letra: 'B' },
-      ];
-      // Guarda las asignaturas iniciales en localStorage
-      this.guardarEnLocalStorage();
-    }
+  constructor(private http: HttpClient) {}
+
+  obtenerAsignaturas(): Observable<Asignatura[]> {
+    return this.http.get<Asignatura[]>(`${this.apiUrl}/${this.apiVersion}/asignaturas`);
   }
 
-  guardarEnLocalStorage() {
-    localStorage.setItem(ASIGNATURAS_KEY, JSON.stringify(this.asignaturas));
+  obtenerAsignaturaPorId(id: number): Observable<Asignatura> {
+    return this.http.get<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas/${id}`);
   }
 
-  agregarAsignatura(asignatura: Asignatura) {
-    this.asignaturas.push(asignatura);
-    this.guardarEnLocalStorage();
+  agregarAsignatura(asignatura: Asignatura): Observable<Asignatura> {
+    return this.http.post<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas`, asignatura);
   }
 
-  obtenerAsignaturas(): Asignatura[] {
-    return this.asignaturas;
+  actualizarAsignatura(asignatura: Asignatura): Observable<Asignatura> {
+    return this.http.patch<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas/${asignatura.id_asignatura}`, asignatura);
+  }
+
+  eliminarAsignatura(id: number): Observable<Asignatura> {
+    return this.http.delete<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas/${id}`);
   }
 }

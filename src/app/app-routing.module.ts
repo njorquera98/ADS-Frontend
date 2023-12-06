@@ -1,30 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TablaAyudantiasComponent } from './components/home/templates/tabla-ayudantias/tabla-ayudantias.component';
-import { CrearAyudantiaComponent } from './components/home/templates/crear-ayudantia/crear-ayudantia.component';
-import { EditarAyudantiaComponent } from './components/home/templates/editar-ayudantia/editar-ayudantia.component';
-import { TablaSolicitudesComponent } from './components/home/templates/tabla-solicitudes/tabla-solicitudes.component';
-import { VerSolicitudComponent } from './components/home/templates/ver-solicitud/ver-solicitud.component';
+import { VerSolicitudComponent } from './components/profesor/ver-solicitud/ver-solicitud.component';
+import { CrearAyudantiaComponent } from './components/profesor/crear-ayudantia/crear-ayudantia.component';
+import { EditarAyudantiaComponent } from './components/profesor/editar-ayudantia/editar-ayudantia.component';
+import { TablaAyudantiasComponent } from './components/profesor/tabla-ayudantias/tabla-ayudantias.component';
+import { TablaSolicitudesComponent } from './components/profesor/tabla-solicitudes/tabla-solicitudes.component';
 
 const routes: Routes = [
   {
-    path: 'ayudantias',
+    path: 'profesor/ayudantias',
     component: TablaAyudantiasComponent
   },
   {
-    path: 'ayudantias/crear',
+    path: 'profesor/ayudantias/crear',
     component: CrearAyudantiaComponent
   },
   {
-    path: 'ayudantias/editar/:id_ayudantia',
+    path: 'profesor/ayudantias/editar/:id_ayudantia',
     component: EditarAyudantiaComponent
   },
   {
-    path: 'solicitudes',
+    path: 'profesor/solicitudes',
     component: TablaSolicitudesComponent
   },
   {
-    path: 'solicitudes/ver/:id_solicitud',
+    path: 'profesor/solicitudes/ver/:id_solicitud',
     component: VerSolicitudComponent
   }
 ];

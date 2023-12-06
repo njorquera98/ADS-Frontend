@@ -1,38 +1,34 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Periodo } from '../../../models/periodo.model';
-
-const PERIODOS_KEY = 'periodos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PeriodosService {
-  periodos: Periodo[] = [];
+  apiUrl = 'http://localhost:3000';
+  apiVersion = 'v1';
 
-  constructor() {
-    const periodosGuardados = localStorage.getItem(PERIODOS_KEY);
-    if (periodosGuardados) {
-      this.periodos = JSON.parse(periodosGuardados);
-    } else {
-      this.periodos = [
-        { id_periodo: 0, tipo: 0, fecha_inicio: new Date('2023-09-27'), fecha_fin: new Date('2023-10-26') },
-        { id_periodo: 1, tipo: 1, fecha_inicio: new Date('2023-10-27'), fecha_fin: new Date('2023-11-26') },
-        { id_periodo: 2, tipo: 2, fecha_inicio: new Date('2023-11-27'), fecha_fin: new Date('2023-12-26') },
-      ];
-      this.guardarEnLocalStorage();
-    }
+  constructor(private http: HttpClient) {}
+
+  obtenerPeriodos(): Observable<Periodo[]> {
+    return this.http.get<Periodo[]>(`${this.apiUrl}/${this.apiVersion}/periodos`);
   }
 
-  guardarEnLocalStorage() {
-    localStorage.setItem(PERIODOS_KEY, JSON.stringify(this.periodos));
+  obtenerPeriodoPorId(id: number): Observable<Periodo> {
+    return this.http.get<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos/${id}`);
   }
 
-  agregarPeriodo(periodo: Periodo) {
-    this.periodos.push(periodo);
-    this.guardarEnLocalStorage();
+  agregarPeriodo(periodo: Periodo): Observable<Periodo> {
+    return this.http.post<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos`, periodo);
   }
 
-  obtenerPeriodos(): Periodo[] {
-    return this.periodos;
+  actualizarPeriodo(periodo: Periodo): Observable<Periodo> {
+    return this.http.patch<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos/${periodo.id_periodo}`, periodo);
+  }
+
+  eliminarPeriodo(id: number): Observable<Periodo> {
+    return this.http.delete<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos/${id}`);
   }
 }

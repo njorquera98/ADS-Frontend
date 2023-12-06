@@ -11,25 +11,20 @@ const AUTH_KEY = "auth_cuenta"
 })
 export class AuthService {
 
-  cuenta_actual?: Usuario | Estudiante;
+  usuarios: Usuario[] = [];
+  cuenta_actual?: Usuario;
 
   constructor(private usuariosService: UsuariosService) {
-    const cuentaGuardada = localStorage.getItem(AUTH_KEY);
-    if (cuentaGuardada) {
-      this.cuenta_actual = JSON.parse(cuentaGuardada);
-    } else {
-      this.cuenta_actual = usuariosService.usuarios[0];
-      this.guardarEnLocalStorage();
-    }
+    this.usuariosService.obtenerUsuarios().subscribe((data) => {
+      if(data) {
+        this.usuarios = data;
+        this.cuenta_actual = this.usuarios.find(v => v.rol === 0);
+      }
+    });
   }
 
   guardarEnLocalStorage() {
     localStorage.setItem(AUTH_KEY, JSON.stringify(this.cuenta_actual));
-  }
-
-  cambiarCuenta(id: number) {
-    this.cuenta_actual = this.usuariosService.usuarios.find(val => val.id_usuario === id);
-    this.guardarEnLocalStorage();
   }
 
   obtenerCuenta(): Usuario | Estudiante | undefined {
