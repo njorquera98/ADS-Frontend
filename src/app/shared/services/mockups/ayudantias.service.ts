@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Ayudantia } from '../../../models/ayudantia.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AyudantiasService {
   apiUrl = 'http://localhost:3000';

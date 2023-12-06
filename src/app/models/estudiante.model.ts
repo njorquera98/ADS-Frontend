@@ -1,4 +1,4 @@
-import { Usuario } from "./usuario.model";
+import { Usuario } from './usuario.model';
 
 export interface Estudiante extends Usuario{
   id_estudiante: number;

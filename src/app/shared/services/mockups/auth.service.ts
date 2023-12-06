@@ -4,10 +4,10 @@ import { EstudiantesService } from './estudiantes.service';
 import { Estudiante } from '../../../models/estudiante.model';
 import { UsuariosService } from './usuarios.service';
 
-const AUTH_KEY = "auth_cuenta"
+const AUTH_KEY = 'auth_cuenta';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
 

@@ -1,41 +1,52 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { VerSolicitudComponent } from './components/profesor/ver-solicitud/ver-solicitud.component';
+import { TablaAyudantiasComponent } from './components/profesor/tabla-ayudantias/tabla-ayudantias.component';
 import { CrearAyudantiaComponent } from './components/profesor/crear-ayudantia/crear-ayudantia.component';
 import { EditarAyudantiaComponent } from './components/profesor/editar-ayudantia/editar-ayudantia.component';
-import { TablaAyudantiasComponent } from './components/profesor/tabla-ayudantias/tabla-ayudantias.component';
 import { TablaSolicitudesComponent } from './components/profesor/tabla-solicitudes/tabla-solicitudes.component';
+import { VerSolicitudComponent } from './components/profesor/ver-solicitud/ver-solicitud.component';
+import { AyudantiasDirectorComponent } from './components/ayudantias-director/ayudantias-director.component';
+import { ResultadosEstudianteComponent } from './components/estudiante/resultados-estudiante/resultados-estudiante.component';
+import { AyudantiasComponent } from './components/estudiante/ayudantias/ayudantias.component';
+import { SolicitudesComponent } from './components/estudiante/solicitudes/solicitudes.component';
+//import { ProfesorSolicitudesComponent } from './components/profesor/solicitudes/solicitudes.component';
+import { PostularComponent } from './components/estudiante/postular/postular.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'estudiante/ayudantias', pathMatch: 'full' },
+  {
+    path: 'estudiante',
+    children: [
+      { path: 'ayudantias', component: AyudantiasComponent },
+      { path: 'postular/:id_ayudantia', component: PostularComponent },
+      { path: 'solicitudes', component: SolicitudesComponent },
+      { path: 'resultados', component: ResultadosEstudianteComponent },
+    ],
+  },
   {
     path: 'profesor',
     children: [
-      {
-        path: 'ayudantias',
-        component: TablaAyudantiasComponent
-      },
-      {
-        path: 'ayudantias/crear',
-        component: CrearAyudantiaComponent
-      },
+      { path: 'solicitudes', component: TablaSolicitudesComponent },
+      { path: 'ayudantias', component: TablaAyudantiasComponent },
+      { path: 'ayudantias/crear', component: CrearAyudantiaComponent },
       {
         path: 'ayudantias/editar/:id_ayudantia',
-        component: EditarAyudantiaComponent
-      },
-      {
-        path: 'solicitudes',
-        component: TablaSolicitudesComponent
+        component: EditarAyudantiaComponent,
       },
       {
         path: 'solicitudes/ver/:id_solicitud',
-        component: VerSolicitudComponent
-      }
-    ]
-  }
+        component: VerSolicitudComponent,
+      },
+    ],
+  },
+  {
+    path: 'director',
+    children: [{ path: 'ayudantias', component: AyudantiasDirectorComponent }],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,3 +1,6 @@
+import { Asignatura } from "./asignatura.model";
+import { Usuario } from "./usuario.model";
+
 export interface Ayudantia {
   id_ayudantia: number;
   id_asignatura: number;
@@ -6,4 +9,6 @@ export interface Ayudantia {
   horas: number;
   estado: string;
   id_periodo: number;
+  profesor?: Usuario;
+  asignatura?: Asignatura;
 }

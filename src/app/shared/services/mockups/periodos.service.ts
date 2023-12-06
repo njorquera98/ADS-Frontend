@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Periodo } from '../../../models/periodo.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PeriodosService {
   apiUrl = 'http://localhost:3000';
