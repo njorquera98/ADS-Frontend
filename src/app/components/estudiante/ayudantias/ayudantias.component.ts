@@ -63,8 +63,8 @@ export class AyudantiasComponent {
     if (solicitud) {
       this.solicitudService
         .deleteSolicitud(solicitud.id_solicitud)
-        .subscribe((data) => {
-          if (data.status == 204) {
+        .subscribe((res) => {
+          if (res.status == 204) {
             console.log('solicitud eliminada');
             this.solicitudService.getSolicitudes().subscribe((data) => {
               this.solicitudes = data;

@@ -16,19 +16,6 @@ export class SolicitudesServices {
 
   createSolicitud(solicitud: any) {
     return this.http.post(`${this.API_SERVER}/solicitudes`, solicitud);
-
-    // .subscribe({
-    //   next: (res) => {
-    //     if (res) {
-    //       this.router.navigate(['/estudiante/ayudantias']);
-    //     } else {
-    //       console.log('no se pudo crear la solicitud');
-    //     }
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   },
-    // });
   }
 
   deleteSolicitud(id: number) {
