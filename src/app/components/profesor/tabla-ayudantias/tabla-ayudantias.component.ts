@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
-import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
-import { AuthService } from '../../../shared/services/mockups/auth.service';
+import { AyudantiasService } from '../../../shared/services/ayudantias.service';
+import { AsignaturasService } from '../../../shared/services/asignaturas.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import { Ayudantia } from '../../../models/ayudantia.model';
 import { Asignatura } from '../../../models/asignatura.model';
 
@@ -19,12 +19,12 @@ export class TablaAyudantiasComponent implements OnInit {
   constructor(public ayudantiasService: AyudantiasService, private asignaturasService: AsignaturasService, public authService: AuthService){};
 
   ngOnInit(): void {
-    this.asignaturasService.obtenerAsignaturas().subscribe((data) => {
+    this.asignaturasService.getAsignaturas().subscribe((data) => {
       if(data) {
         this.asignaturas = data;
       }
     });
-    this.ayudantiasService.obtenerAyudantias().subscribe((data) => {
+    this.ayudantiasService.getAyudantias().subscribe((data) => {
       if(data) {
         this.ayudantias = data;
       }
@@ -38,10 +38,10 @@ export class TablaAyudantiasComponent implements OnInit {
   createAyudantia() {
   }
 
-  eliminarAyudantia(ayudantia: Ayudantia) {
+  deleteAyudantia(ayudantia: Ayudantia) {
     const index = this.ayudantias.findIndex(val => val.id_ayudantia === ayudantia.id_ayudantia)!;
     this.ayudantias.splice(index, 1);
-    this.ayudantiasService.eliminarAyudantia(ayudantia.id_ayudantia!).subscribe((data) => {
+    this.ayudantiasService.deleteAyudantia(ayudantia.id_ayudantia!).subscribe((data) => {
       if(data) {
         console.log("Ayudantia eliminada");
       }

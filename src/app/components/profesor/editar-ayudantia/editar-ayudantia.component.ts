@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Asignatura } from '../../../models/asignatura.model';
 import { Ayudantia } from '../../../models/ayudantia.model';
-import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
-import { AuthService } from '../../../shared/services/mockups/auth.service';
-import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
+import { AsignaturasService } from '../../../shared/services/asignaturas.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { AyudantiasService } from '../../../shared/services/ayudantias.service';
 
 @Component({
   selector: 'app-editar-ayudantia',
@@ -19,10 +19,10 @@ export class EditarAyudantiaComponent implements OnInit{
     private router: Router, private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.asignaturasService.obtenerAsignaturas().subscribe((data) => {
+    this.asignaturasService.getAsignaturas().subscribe((data) => {
       if(data) {
         this.asignaturas = data;
-        this.ayudantiasService.obtenerAyudantiaPorId(+this.activatedRoute.snapshot.params['id_ayudantia']).subscribe((data) => {
+        this.ayudantiasService.getAyudantiaById(+this.activatedRoute.snapshot.params['id_ayudantia']).subscribe((data) => {
           if(data) {
             console.log(data);
             this.ayudantiaEdit = data;
@@ -32,7 +32,7 @@ export class EditarAyudantiaComponent implements OnInit{
     });
   }
 
-  actualizarAyudantia() {
+  updateAyudantia() {
     const auxAyudantia: Ayudantia = {
       id_ayudantia: this.ayudantiaEdit!.id_ayudantia,
       id_asignatura: this.ayudantiaEdit!.id_asignatura,
@@ -43,7 +43,7 @@ export class EditarAyudantiaComponent implements OnInit{
       id_periodo: this.ayudantiaEdit!.id_periodo
     }
 
-    this.ayudantiasService.actualizarAyudantia(auxAyudantia).subscribe((data) => {
+    this.ayudantiasService.updateAyudantia(auxAyudantia).subscribe((data) => {
       if(data) {
         console.log("ayudantia actualizada");
         this.router.navigate(['profesor/ayudantias']);

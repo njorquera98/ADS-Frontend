@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Ayudantia } from '../../../models/ayudantia.model';
-import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
-import { AuthService } from '../../../shared/services/mockups/auth.service';
-import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
+import { AsignaturasService } from '../../../shared/services/asignaturas.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { AyudantiasService } from '../../../shared/services/ayudantias.service';
 import { Asignatura } from '../../../models/asignatura.model';
 
 
@@ -21,7 +21,7 @@ export class CrearAyudantiaComponent implements OnInit {
   constructor(private authService: AuthService, public asignaturasService: AsignaturasService, private ayudantiasService: AyudantiasService, private router: Router){}
 
   ngOnInit(): void {
-    this.asignaturasService.obtenerAsignaturas().subscribe((data) => {
+    this.asignaturasService.getAsignaturas().subscribe((data) => {
       if(data){
         this.asignaturas = data;
       }
@@ -39,7 +39,7 @@ export class CrearAyudantiaComponent implements OnInit {
       id_periodo: 1,
     }
 
-    this.ayudantiasService.agregarAyudantia(nuevaAyudantia).subscribe((data) => {
+    this.ayudantiasService.createAyudantia(nuevaAyudantia).subscribe((data) => {
       if(data){
         console.log("Ayudantia creada");
         this.router.navigate(['profesor/ayudantias']);

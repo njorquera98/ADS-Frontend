@@ -1,34 +1,32 @@
 import { Injectable } from '@angular/core';
-import { UsuariosServices } from './usuarios.service';
+import { UsuariosService } from './usuarios.service';
+import { Usuario, UsuarioRol } from '../../models/usuario.model';
 
-const AUTH_KEY = 'auth_cuenta';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthServices {
+export class AuthService {
+  cuentas: Usuario[] = [];
   cuenta_actual?: any;
 
-  constructor(private usuarioService: UsuariosServices) {
-    console.log('constructor auth');
-    const cuentaGuardada = localStorage.getItem(AUTH_KEY);
-    if (cuentaGuardada) {
-      this.cuenta_actual = JSON.parse(cuentaGuardada);
-    } else {
-      usuarioService.getUsuarios().then((res) => {
-        this.cuenta_actual = res[0];
-        this.guardarEnLocalStorage();
-      });
-    }
-    console.log('constructor auth');
+  constructor(private usuarioService: UsuariosService) {
+    usuarioService.getUsuarios().subscribe((res) => {
+      this.cuentas = res;
+      this.cuenta_actual = this.cuentas.find(c => c.rol === UsuarioRol.Profesor); // profesor default
+    });
   }
-  guardarEnLocalStorage() {
-    localStorage.setItem(AUTH_KEY, JSON.stringify(this.cuenta_actual));
-  }
-  obtenerCuenta(): any {
+
+  getCuenta(): any {
     return this.cuenta_actual;
   }
 
+  cambiarCuenta(rol: UsuarioRol) {
+    const cuentaConRol = this.cuentas.find(c => c.rol === rol);
+    if(cuentaConRol) this.cuenta_actual = cuentaConRol;
+    else console.error("Error al cambiar de cuenta");
+  }
+
   // cambiarCuenta(id:number){
-  //   this.cuenta_actual = this.usuarioService.obtenerUsuario(id);
+  //   this.cuenta_actual = this.usuarioService.getUsuario(id);
   // }
 }

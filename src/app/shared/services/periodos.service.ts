@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Periodo } from '../../../models/periodo.model';
+import { Periodo } from '../../models/periodo.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,23 +12,23 @@ export class PeriodosService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerPeriodos(): Observable<Periodo[]> {
+  getPeriodos(): Observable<Periodo[]> {
     return this.http.get<Periodo[]>(`${this.apiUrl}/${this.apiVersion}/periodos`);
   }
 
-  obtenerPeriodoPorId(id: number): Observable<Periodo> {
+  getPeriodoById(id: number): Observable<Periodo> {
     return this.http.get<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos/${id}`);
   }
 
-  agregarPeriodo(periodo: Periodo): Observable<Periodo> {
+  createPeriodo(periodo: Periodo): Observable<Periodo> {
     return this.http.post<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos`, periodo);
   }
 
-  actualizarPeriodo(periodo: Periodo): Observable<Periodo> {
+  updatePeriodo(periodo: Periodo): Observable<Periodo> {
     return this.http.patch<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos/${periodo.id_periodo}`, periodo);
   }
 
-  eliminarPeriodo(id: number): Observable<Periodo> {
+  deletePeriodo(id: number): Observable<Periodo> {
     return this.http.delete<Periodo>(`${this.apiUrl}/${this.apiVersion}/periodos/${id}`);
   }
 }

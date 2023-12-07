@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/templates/home/home.component';
-import { AyudantiasDirectorComponent } from './components/ayudantias-director/ayudantias-director.component';
+import { AyudantiasDirectorComponent } from './components/director/ayudantias-director/ayudantias-director.component';
 import { ResultadosEstudianteComponent } from './components/estudiante/resultados-estudiante/resultados-estudiante.component';
 import { TablaAyudantiasComponent } from './components/profesor/tabla-ayudantias/tabla-ayudantias.component';
 import { CrearAyudantiaComponent } from './components/profesor/crear-ayudantia/crear-ayudantia.component';

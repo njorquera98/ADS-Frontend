@@ -5,7 +5,7 @@ import { CrearAyudantiaComponent } from './components/profesor/crear-ayudantia/c
 import { EditarAyudantiaComponent } from './components/profesor/editar-ayudantia/editar-ayudantia.component';
 import { TablaSolicitudesComponent } from './components/profesor/tabla-solicitudes/tabla-solicitudes.component';
 import { VerSolicitudComponent } from './components/profesor/ver-solicitud/ver-solicitud.component';
-import { AyudantiasDirectorComponent } from './components/ayudantias-director/ayudantias-director.component';
+import { AyudantiasDirectorComponent } from './components/director/ayudantias-director/ayudantias-director.component';
 import { ResultadosEstudianteComponent } from './components/estudiante/resultados-estudiante/resultados-estudiante.component';
 import { AyudantiasComponent } from './components/estudiante/ayudantias/ayudantias.component';
 import { SolicitudesComponent } from './components/estudiante/solicitudes/solicitudes.component';
@@ -13,7 +13,7 @@ import { SolicitudesComponent } from './components/estudiante/solicitudes/solici
 import { PostularComponent } from './components/estudiante/postular/postular.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'estudiante/ayudantias', pathMatch: 'full' },
+  { path: '', redirectTo: 'profesor/ayudantias', pathMatch: 'full' },
   {
     path: 'estudiante',
     children: [
@@ -41,7 +41,9 @@ const routes: Routes = [
   },
   {
     path: 'director',
-    children: [{ path: 'ayudantias', component: AyudantiasDirectorComponent }],
+    children: [
+      { path: 'ayudantias', component: AyudantiasDirectorComponent },
+    ],
   },
 ];
 

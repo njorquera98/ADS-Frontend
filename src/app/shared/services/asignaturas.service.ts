@@ -1,18 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Asignatura } from '../../models/asignatura.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AsignaturasServices {
-  private API_SERVER = 'http://localhost:3000';
+export class AsignaturasService {
+  apiUrl = 'http://localhost:3000';
+  apiVersion = 'v1';
 
   constructor(private http: HttpClient) {}
-  getAsignaturas() {
-    return this.http.get(this.API_SERVER + '/asignaturas');
+
+  getAsignaturas(): Observable<Asignatura[]> {
+    return this.http.get<Asignatura[]>(`${this.apiUrl}/${this.apiVersion}/asignaturas`);
   }
-  getAsignatura(id: number) {
-    return this.http.get(this.API_SERVER + '/asignaturas/' + id);
+
+  getAsignaturaById(id: number): Observable<Asignatura> {
+    return this.http.get<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas/${id}`);
+  }
+
+  createAsignatura(asignatura: Asignatura): Observable<Asignatura> {
+    return this.http.post<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas`, asignatura);
+  }
+
+  updateAsignatura(asignatura: Asignatura): Observable<Asignatura> {
+    return this.http.patch<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas/${asignatura.id_asignatura}`, asignatura);
+  }
+
+  deleteAsignatura(id: number): Observable<Asignatura> {
+    return this.http.delete<Asignatura>(`${this.apiUrl}/${this.apiVersion}/asignaturas/${id}`);
   }
 }

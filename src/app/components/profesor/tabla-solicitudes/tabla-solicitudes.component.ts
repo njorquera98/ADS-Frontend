@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { SolicitudesService } from '../../../shared/services/mockups/solicitudes.service';
+import { SolicitudesService } from '../../../shared/services/solicitudes.service';
 import { Asignatura } from '../../../models/asignatura.model';
 import { Estudiante } from '../../../models/estudiante.model';
 import { Solicitud } from '../../../models/solicitud.model';
-import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
-import { AuthService } from '../../../shared/services/mockups/auth.service';
-import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
-import { EstudiantesService } from '../../../shared/services/mockups/estudiantes.service';
+import { AsignaturasService } from '../../../shared/services/asignaturas.service';
+import { AuthService } from '../../../shared/services/auth.service';
+import { AyudantiasService } from '../../../shared/services/ayudantias.service';
+import { EstudiantesService } from '../../../shared/services/estudiantes.service';
 import { Ayudantia } from '../../../models/ayudantia.model';
 import { Usuario } from '../../../models/usuario.model';
 
@@ -25,22 +25,22 @@ export class TablaSolicitudesComponent implements OnInit{
     public ayudantiasService: AyudantiasService, public authService: AuthService, private estudiantesService: EstudiantesService){}
     
   ngOnInit(): void {
-    this.asignaturasService.obtenerAsignaturas().subscribe((data) => {
+    this.asignaturasService.getAsignaturas().subscribe((data) => {
       if(data) {
         this.asignaturas = data;
       }
     });
-    this.ayudantiasService.obtenerAyudantias().subscribe((data) => {
+    this.ayudantiasService.getAyudantias().subscribe((data) => {
       if(data) {
         this.ayudantias = data;
       }
     });
-    this.solicitudesService.obtenerSolicitudes().subscribe((data) => {
+    this.solicitudesService.getSolicitudes().subscribe((data) => {
       if(data) {
         this.solicitudes = data;
       }
     });
-    this.estudiantesService.obtenerEstudiantes().subscribe((data) => {
+    this.estudiantesService.getEstudiantes().subscribe((data) => {
       if(data) {
         this.estudiantes = data;
       }
@@ -57,10 +57,10 @@ export class TablaSolicitudesComponent implements OnInit{
     return this.estudiantes.find(val => val.id_usuario === solicitud.id_usuario);
   }
 
-  eliminarSolicitud(solicitud: Solicitud) {
+  deleteSolicitud(solicitud: Solicitud) {
     const index = this.solicitudes.findIndex(val => val.id_solicitud === solicitud.id_solicitud)!;
     this.solicitudes.splice(index, 1);
-    this.solicitudesService.eliminarSolicitud(solicitud.id_solicitud!).subscribe((data) => {
+    this.solicitudesService.deleteSolicitud(solicitud.id_solicitud!).subscribe((data) => {
       if(data) {
         console.log("Solicitud eliminada");
       }
@@ -70,7 +70,7 @@ export class TablaSolicitudesComponent implements OnInit{
   aprobarSolicitud(solicitud: Solicitud) {
     solicitud.estado = "Aprobado";
 
-    this.solicitudesService.actualizarSolicitud(solicitud).subscribe((data) => {
+    this.solicitudesService.updateSolicitud(solicitud).subscribe((data) => {
       if(data) {
         console.log("Solicitud actualizada");
       }
@@ -80,7 +80,7 @@ export class TablaSolicitudesComponent implements OnInit{
   rechazarSolicitud(solicitud: Solicitud) {
     solicitud.estado = "Rechazado";
 
-    this.solicitudesService.actualizarSolicitud(solicitud).subscribe((data) => {
+    this.solicitudesService.updateSolicitud(solicitud).subscribe((data) => {
       if(data) {
         console.log("Solicitud actualizada");
       }
@@ -90,7 +90,7 @@ export class TablaSolicitudesComponent implements OnInit{
   reset(solicitud: Solicitud) {
     solicitud.estado = "Creado";
 
-    this.solicitudesService.actualizarSolicitud(solicitud).subscribe((data) => {
+    this.solicitudesService.updateSolicitud(solicitud).subscribe((data) => {
       if(data) {
         console.log("Solicitud actualizada");
       }

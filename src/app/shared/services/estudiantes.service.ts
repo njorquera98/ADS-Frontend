@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Estudiante } from '../../../models/estudiante.model';
+import { Estudiante } from '../../models/estudiante.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,23 +12,23 @@ export class EstudiantesService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerEstudiantes(): Observable<Estudiante[]> {
+  getEstudiantes(): Observable<Estudiante[]> {
     return this.http.get<Estudiante[]>(`${this.apiUrl}/${this.apiVersion}/estudiantes`);
   }
 
-  obtenerEstudiantePorId(id: number): Observable<Estudiante> {
+  getEstudianteById(id: number): Observable<Estudiante> {
     return this.http.get<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes/${id}`);
   }
 
-  agregarEstudiante(estudiante: Estudiante): Observable<Estudiante> {
+  createEstudiante(estudiante: Estudiante): Observable<Estudiante> {
     return this.http.post<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes`, estudiante);
   }
 
-  actualizarEstudiante(estudiante: Estudiante): Observable<Estudiante> {
+  updateEstudiante(estudiante: Estudiante): Observable<Estudiante> {
     return this.http.patch<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes/${estudiante.id_estudiante}`, estudiante);
   }
 
-  eliminarEstudiante(id: number): Observable<Estudiante> {
+  deleteEstudiante(id: number): Observable<Estudiante> {
     return this.http.delete<Estudiante>(`${this.apiUrl}/${this.apiVersion}/estudiantes/${id}`);
   }
 }

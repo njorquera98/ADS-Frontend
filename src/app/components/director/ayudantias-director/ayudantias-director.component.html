@@ -66,27 +66,27 @@
             <td
               class="border-t-0 py-4 pl-6 border-l-0 border-r-0 whitespace-nowrap"
             >
-              {{ item.nombre_profesor }}
+              {{ getNombreProfesor(item) }}
             </td>
             <td
               class="border-t-0 py-4 pl-6 border-l-0 border-r-0 whitespace-nowrap"
             >
-              {{ item.rut }}
+              {{ getRutProfesor(item) }}
             </td>
             <td
               class="border-t-0 py-4 pl-6 border-l-0 border-r-0 whitespace-nowrap"
             >
-              {{ item.nombre_asignatura }}
+              {{ getNombreAsignatura(item) }}
             </td>
             <td
               class="border-t-0 p-4 border-l-0 border-r-0 whitespace-nowrap text-center"
             >
-              {{ item.grupo }}
+              {{ getGrupoAsignatura(item) }}
             </td>
             <td
               class="border-t-0 p-4 border-l-0 border-r-0 whitespace-nowrap text-center"
             >
-              {{ item.cupo }}
+              {{ item.cupos }}
             </td>
             <td
               class="border-t-0 p-4 border-l-0 border-r-0 whitespace-nowrap text-center"
@@ -103,7 +103,7 @@
                     dark:hover:bg-green-700 dark:focus:ring-green-900"
                             type="button"        
                             title="Aprobar"
-                            (click)="aprobarAyudantia(item.id)">
+                            (click)="aprobarAyudantia(item)">
                         <i class="fa-regular fa-thumbs-up"></i>
                     </button>
                     <button class="flex justify-center items-center w-9 h-9 rounded-lg focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 
@@ -111,7 +111,7 @@
                     dark:hover:bg-red-700 dark:focus:ring-red-900"
                             type="button"        
                             title="Rechazar"
-                            (click)="rechazarAyudantia(item.id)">
+                            (click)="rechazarAyudantia(item)">
                         <i class="fa-regular fa-thumbs-down"></i>
                   </button>
                 } @else {
@@ -126,7 +126,7 @@
                     font-medium dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                             type="button"        
                             title="Reset"
-                            (click)="reiniciarEstadoAyudantia(item.id)">
+                            (click)="reiniciarEstadoAyudantia(item)">
                         <i class="fa-solid fa-repeat"></i>
                     </button>
                 }
