@@ -14,16 +14,18 @@ export class AuthServices {
     if (cuentaGuardada) {
       this.cuenta_actual = JSON.parse(cuentaGuardada);
     } else {
-      usuarioService.getUsuarios().then((res) => {
-        this.cuenta_actual = res[0];
+      this.usuarioService.getUsuarios().subscribe((usuarios: any) => {
+        this.cuenta_actual = usuarios[0];
         this.guardarEnLocalStorage();
       });
     }
     console.log('constructor auth');
   }
+
   guardarEnLocalStorage() {
     localStorage.setItem(AUTH_KEY, JSON.stringify(this.cuenta_actual));
   }
+
   obtenerCuenta(): any {
     return this.cuenta_actual;
   }

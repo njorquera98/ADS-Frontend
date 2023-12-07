@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
 //import { CommonModule } from '@angular/common';
-import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
-import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
 import { Asignatura } from '../../../models/asignatura.model';
-// import { AuthService } from '../../../shared/services/mockups/auth.service';
-import { SolicitudesService } from '../../../shared/services/mockups/solicitudes.service';
 import { AyudantiasServices } from '../../../shared/services/ayudantias.service';
 import { AsignaturasServices } from '../../../shared/services/asignaturas.service';
-import { Observable } from 'rxjs';
-import { Ayudantia } from '../../../models/ayudantia.model';
 import { SolicitudesServices } from '../../../shared/services/solicitudes.service';
 import { AuthServices } from '../../../shared/services/auth.service';
 
@@ -31,15 +25,15 @@ export class AyudantiasComponent {
   solicitudes: any = [];
   ngOnInit() {
     this.ayudantiasService.getAyudantias().subscribe((data) => {
-      console.log(data);
+      console.log('ayudantias: ', data);
       this.ayudantias = data;
     });
     this.asignaturaService.getAsignaturas().subscribe((data) => {
-      console.log(data);
+      console.log('asignaturas: ', data);
       this.asignaturas = data;
     });
     this.solicitudService.getSolicitudes().subscribe((data) => {
-      console.log(data);
+      console.log('solicitudes: ', data);
       this.solicitudes = data;
     });
     console.log(this.authService.obtenerCuenta()?.id_usuario);
@@ -67,8 +61,18 @@ export class AyudantiasComponent {
         sol.id_usuario == this.authService.obtenerCuenta()?.id_usuario
     );
     if (solicitud) {
-      //console.log(solicitud);
-      this.solicitudService.deleteSolicitud(solicitud.id_solicitud);
+      this.solicitudService
+        .deleteSolicitud(solicitud.id_solicitud)
+        .subscribe((data) => {
+          if (data.status == 204) {
+            console.log('solicitud eliminada');
+            this.solicitudService.getSolicitudes().subscribe((data) => {
+              this.solicitudes = data;
+            });
+          } else {
+            console.log('no se pudo eliminar la solicitud');
+          }
+        });
     }
   }
 

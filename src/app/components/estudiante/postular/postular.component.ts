@@ -1,13 +1,5 @@
 import { Component } from '@angular/core';
-import { SolicitudesService } from '../../../shared/services/mockups/solicitudes.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Solicitud } from '../../../models/solicitud.model';
-import { AyudantiasService } from '../../../shared/services/mockups/ayudantias.service';
-import { Ayudantia } from '../../../models/ayudantia.model';
-import { AsignaturasService } from '../../../shared/services/mockups/asignaturas.service';
-import { EstudiantesService } from '../../../shared/services/mockups/estudiantes.service';
-import { UsuariosService } from '../../../shared/services/mockups/usuarios.service';
-// import { AuthService } from '../../../shared/services/mockups/auth.service';
 import { AuthServices } from '../../../shared/services/auth.service';
 import { AsignaturasServices } from '../../../shared/services/asignaturas.service';
 import { UsuariosServices } from '../../../shared/services/usuarios.service';
@@ -70,15 +62,12 @@ export class PostularComponent {
     this.solicitud.estado = 'Creado';
     this.solicitud.id_periodo = 1; // Revisar logica
     console.log('solicitud de postular', this.solicitud);
-    this.solicitudService.createSolicitud({
-      id_ayudantia: this.solicitud.id_ayudantia,
-      id_usuario: this.solicitud.id_usuario,
-      fecha: this.solicitud.fecha,
-      estado: this.solicitud.estado,
-      id_periodo: this.solicitud.id_periodo,
-      prioridad: this.solicitud.prioridad,
-      promedio_asignatura: this.solicitud.promedio_asignatura,
-      anteriormente_ayudante: this.solicitud.anteriormente_ayudante,
+    this.solicitudService.createSolicitud(this.solicitud).subscribe((res) => {
+      if (res) {
+        this.Router.navigate(['/estudiante/ayudantias']);
+      } else {
+        console.log('no se pudo crear la solicitud');
+      }
     });
   }
 }

@@ -15,8 +15,8 @@ export class UsuariosServices {
     if (usuariosGuardados) {
       this.usuarios = JSON.parse(usuariosGuardados);
     } else {
-      this.getUsuarios().then((res) => {
-        this.usuarios = res;
+      this.getUsuarios().subscribe((usuarios: any) => {
+        this.usuarios = usuarios;
         this.guardarEnLocalStorage();
       });
     }
@@ -26,11 +26,7 @@ export class UsuariosServices {
     console.log(this.usuarios);
   }
   getUsuarios() {
-    return fetch(this.API_SERVER + '/usuarios')
-      .then((res) => res.json())
-      .then((res) => {
-        return res;
-      });
+    return this.http.get(this.API_SERVER + '/usuarios');
   }
   obetenrUsuario(id: number): any {
     return this.usuarios.find((usuario: any) => usuario.id_usuario === id);
