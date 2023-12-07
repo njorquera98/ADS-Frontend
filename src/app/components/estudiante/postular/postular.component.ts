@@ -6,7 +6,8 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { SolicitudesService } from '../../../shared/services/solicitudes.service';
 import { Asignatura } from '../../../models/asignatura.model';
 import { Solicitud } from '../../../models/solicitud.model';
-
+import { AyudantiasService } from '../../../shared/services/ayudantias.service';
+import { Ayudantia } from '../../../models/ayudantia.model';
 
 @Component({
   selector: 'app-postular',
@@ -22,9 +23,13 @@ export class PostularComponent {
     private authService: AuthService,
     private solicitudService: SolicitudesService,
     private route: ActivatedRoute,
-    private Router: Router
+    private router: Router,
+    private ayudantiasService: AyudantiasService
   ) {}
-  idAyudantia: number = 0;
+
+  ayudantia?: Ayudantia;
+  asignaturaAyudantia?: Asignatura;
+  
   nombreEstudiante?: string;
   solicitud: Solicitud = {
     id_solicitud: -1,
@@ -39,24 +44,29 @@ export class PostularComponent {
   };
   asignaturas: Asignatura[] = [];
   ngOnInit(): void {
-    this.idAyudantia = Number(this.route.snapshot.paramMap.get('id_ayudantia'));
-    this.solicitud.id_ayudantia = this.idAyudantia;
-    const idUser = this.authService.cuenta_actual?.id_usuario;
-    this.solicitud.id_usuario = idUser || 0;
-    this.usuarioService.getUsuarioById(idUser || 0).subscribe((data) => {
-      this.nombreEstudiante = data.nombre +
-      ' ' +
-      data.apellido_paterno +
-      ' ' +
-      data.apellido_materno;
-    });
-    this.asignaturaService.getAsignaturas().subscribe((data) => {
-      this.asignaturas = data;
+    const idAyudantia = Number(this.route.snapshot.paramMap.get('id_ayudantia'));
+    this.ayudantiasService.getAyudantiaById(idAyudantia).subscribe((data) => {
+      this.ayudantia = data;
+      this.solicitud.id_ayudantia = idAyudantia;
+      const idUser = this.authService.cuenta_actual?.id_usuario;
+      this.solicitud.id_usuario = idUser || 0;
+      this.usuarioService.getUsuarioById(idUser || 0).subscribe((data) => {
+        this.nombreEstudiante = data.nombre +
+        ' ' +
+        data.apellido_paterno +
+        ' ' +
+        data.apellido_materno;
+      });
+      this.asignaturaService.getAsignaturas().subscribe((data) => {
+        this.asignaturas = data;
+        this.solicitud.id_ayudantia = idAyudantia;
+        this.asignaturaAyudantia = data.find(a => a.id_asignatura === this.ayudantia?.id_asignatura);
+      });
     });
   }
-  getAsignatura(id: number): any {
+  getAsignatura(): any {
     return this.asignaturas.find(
-      (asignatura: any) => asignatura.id_asignatura === id
+      (asignatura: Asignatura) => asignatura.id_asignatura === this.ayudantia?.id_asignatura
     );
   }
 
@@ -70,6 +80,7 @@ export class PostularComponent {
     this.solicitud.id_periodo = 1;
     this.solicitudService.createSolicitud(this.solicitud).subscribe((data) => {
       console.log(data);
+      this.router.navigate(['estudiante/ayudantias']);
     });
   }
 }

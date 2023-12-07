@@ -1,0 +1,58 @@
+<div class="container m-auto py-6 px-8">
+  <ng-container *ngFor="let ayudantia of ayudantias">
+    <div
+    class="flex flex-col w-full bg-white rounded-lg shadow-md pt-4 pb-2 my-4 dark:bg-gray-800"
+  >
+    <h3
+      class="text-xl text-gray-900 font-semibold px-6 mb-4 dark:text-gray-200"
+    >
+    {{ getAsignatura(ayudantia.id_asignatura)?.nombre }} {{ getAsignatura(ayudantia.id_asignatura)?.letra }} (Aprobados)
+    </h3>
+    <div class="w-full overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead
+          class="text-sm text-white uppercase font-semibold bg-gray-800 dark:bg-gray-600 dark:text-gray-300"
+        >
+          <tr class="text-white">
+            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+              #
+            </th>
+            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+              Nombre
+            </th>
+            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+              Apellido
+            </th>
+          </tr>
+        </thead>
+        <tbody class="text-sm dark:text-gray-300 text-center">
+          @for (usuario of usuariosDeAyudantia[ayudantia.id_ayudantia]; track usuario.id_usuario) {
+            <tr
+              class="hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <td
+                scope="col"
+                class="border-t-0 p-4 pl-6 border-l-0 border-r-0 whitespace-nowrap"
+              >
+                {{ $index }}
+              </td>
+              <td
+                scope="col"
+                class="border-t-0 p-4 border-l-0 border-r-0 whitespace-nowrap"
+              >
+                {{ usuario.nombre }}
+              </td>
+              <td
+                scope="col"
+                class="border-t-0 p-4 border-l-0 border-r-0 whitespace-nowrap"
+              >
+                {{ usuario.apellido_paterno }} {{ usuario.apellido_materno }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </ng-container>
+</div>

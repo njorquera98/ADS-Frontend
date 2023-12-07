@@ -11,6 +11,7 @@ import { AyudantiasComponent } from './components/estudiante/ayudantias/ayudanti
 import { SolicitudesComponent } from './components/estudiante/solicitudes/solicitudes.component';
 //import { ProfesorSolicitudesComponent } from './components/profesor/solicitudes/solicitudes.component';
 import { PostularComponent } from './components/estudiante/postular/postular.component';
+import { DashboardComponent } from './components/estudiante/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'profesor/ayudantias', pathMatch: 'full' },
@@ -20,7 +21,7 @@ const routes: Routes = [
       { path: 'ayudantias', component: AyudantiasComponent },
       { path: 'postular/:id_ayudantia', component: PostularComponent },
       { path: 'solicitudes', component: SolicitudesComponent },
-      { path: 'resultados', component: ResultadosEstudianteComponent },
+      { path: 'dashboard', component: DashboardComponent },
     ],
   },
   {

@@ -59,7 +59,18 @@ export class AyudantiasComponent {
     );
     if (solicitud) {
       //console.log(solicitud);
-      this.solicitudService.deleteSolicitud(solicitud.id_solicitud);
+      this.solicitudService.deleteSolicitud(solicitud.id_solicitud).subscribe((data) => {
+        console.log(data);
+        this.ayudantiasService.getAyudantias().subscribe((data) => {
+          this.ayudantias = data.filter(a => a.estado === "Aprobado");
+        });
+        this.asignaturaService.getAsignaturas().subscribe((data) => {
+          this.asignaturas = data;
+        });
+        this.solicitudService.getSolicitudes().subscribe((data) => {
+          this.solicitudes = data;
+        });
+      });
     }
   }
 

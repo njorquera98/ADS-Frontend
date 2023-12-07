@@ -17,6 +17,7 @@ import { AyudantiasComponent } from './components/estudiante/ayudantias/ayudanti
 import { SolicitudesComponent } from './components/estudiante/solicitudes/solicitudes.component';
 import { EstudianteModalComponent } from './components/estudiante/modal/modal.component';
 import { PostularComponent } from './components/estudiante/postular/postular.component';
+import { DashboardComponent } from './components/estudiante/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { PostularComponent } from './components/estudiante/postular/postular.com
     EditarAyudantiaComponent,
     TablaSolicitudesComponent,
     VerSolicitudComponent,
+    DashboardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
